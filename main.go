@@ -1,6 +1,7 @@
-package main
+package boltircbot
 
 import (
+	"bytes"
 	"crypto/tls"
 	"encoding/json"
 	"errors"
@@ -121,9 +122,19 @@ func main() {
 				log.Println(err)
 				continue
 			}
+
 			ircproj.Noticef(event.Arguments[0], "#%v %v %v", m["number"].(float64), m["title"].(string), m["html_url"].(string))
 		}
 	})
+
+	AddAction(ircproj, `#[kitten|cat]`,  "starts to meow at %v... *purr* *purr*")
+	AddAction(ircproj, `#dog`,  ", rolls over, and now wants it's tummy scratched by %v")
+	AddAction(ircproj, `#beer`,  "return $this->app['beer']->serve('everyone')->sendBillTo('%v');")
+	AddAction(ircproj, `#coffee`,  "turns on the espresso machine for %v")
+	AddAction(ircproj, `#hotchocolate`,  "I believe in miracles, %v, you sexy thing!")
+	AddAction(ircproj, `#tea`,  "has boiled some water, and begins to brew %v a nice cup of tea.")
+	AddAction(ircproj, `#wine`,  "opens a bottle of Château Lafite at %v's request!")
+	AddAction(ircproj, `#tequila`,  "drinks one Tequila, two Tequilas, three Tequilas... floor!")
 
 	ircproj.Loop()
 }
