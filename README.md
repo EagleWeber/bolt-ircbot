@@ -1,20 +1,23 @@
-# github-issue-ircbot
+# bolt-ircbot
 
-```github-issue-ircbot``` responds to irc msg as like as ```#1234``` and replies github issue information.
+```bolt-ircbot``` responds to irc msg as like as ```#1234``` and replies github issue information.
 
-## how to install
+Based on work by [GitHub user soh335](https://github.com/soh335/github-issue-ircbot)
 
-```
-go install github.com/soh335/github-issue-ircbot
-```
-
-## usage
+## How to install
 
 ```
-github-issue-ircbot --config /path/to/config.json
+go get github.com/GawainLynch/bolt-ircbot
+go install github.com/GawainLynch/bolt-ircbot
 ```
 
-## see also
+## Usage
+
+```
+bolt-ircbot --config /path/to/config.json
+```
+
+## See also
 
 * http://blog.handlena.me/entry/2013/06/12/234712
 * http://soh335.hatenablog.com/entry/2013/06/13/103457
