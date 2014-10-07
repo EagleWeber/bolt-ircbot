@@ -135,6 +135,7 @@ func main() {
 	AddAction(ircproj, `#wine`,  "opens a bottle of Château Lafite at %v's request!")
 	AddAction(ircproj, `#tequila`,  "drinks one Tequila, two Tequilas, three Tequilas... floor!")
 	AddAction(ircproj, `#whiskey`,  "pours a nip of Glenavon Special for %v's.")
+	AddAction(ircproj, `#whiskey`,  "wonders if %v has ever had a Heathcote Estate Shiraz?")
 
 	ircproj.Loop()
 }
