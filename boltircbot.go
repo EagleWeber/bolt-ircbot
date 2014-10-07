@@ -1,7 +1,6 @@
 package boltircbot
 
 import (
-	"bytes"
 	"crypto/tls"
 	"encoding/json"
 	"errors"
