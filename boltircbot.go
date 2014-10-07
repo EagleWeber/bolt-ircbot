@@ -6,7 +6,7 @@ import (
 	"errors"
 	"flag"
 	"fmt"
-	"github.com/thoj/go-ircevent"
+	"github.com/GawainLynch/go-ircevent"
 	"io/ioutil"
 	"log"
 	"net"
