@@ -1,4 +1,4 @@
-package boltircbot
+package main
 
 import (
 	"crypto/tls"
