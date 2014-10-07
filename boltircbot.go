@@ -127,7 +127,7 @@ func main() {
 	})
 
 	AddAction(ircproj, `#[kitten|cat]`,  "starts to meow at %v... *purr* *purr*")
-	AddAction(ircproj, `#dog`,  ", rolls over, and now wants it's tummy scratched by %v")
+	AddAction(ircproj, `#dog`,  "rolls over, and now wants it's tummy scratched by %v")
 	AddAction(ircproj, `#beer`,  "return $this->app['beer']->serve('everyone')->sendBillTo('%v');")
 	AddAction(ircproj, `#coffee`,  "turns on the espresso machine for %v")
 	AddAction(ircproj, `#hotchocolate`,  "I believe in miracles, %v, you sexy thing!")
