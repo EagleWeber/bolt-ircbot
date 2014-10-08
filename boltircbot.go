@@ -132,6 +132,13 @@ func main() {
 		}
 	})
 
+	// Just for Bopp, for now
+	ircproj.AddCallback("JOIN", func(event *irc.Event) {
+		if event.Nick == "Bopp" {
+			ircproj.Privmsgf(event.Arguments[0], "Welcome back, %v. I missed you while you were gone!", event.Nick)
+		}
+	})
+
 	AddAction(ircproj, `#(kitten|cat)`,  "starts to meow at %v... *purr* *purr*")
 	AddAction(ircproj, `#dog`,  "rolls over, and wants its tummy scratched by %v")
 	AddAction(ircproj, `#beer`,  "return $this->app['beer']->serve('everyone')->sendBillTo('%v');")
