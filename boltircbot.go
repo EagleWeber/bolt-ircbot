@@ -88,6 +88,7 @@ func main() {
 	ircproj.AddCallback("001", func(event *irc.Event) {
 		for _, channel := range c.Irc.Channels {
 			ircproj.Join(channel)
+			log.Println(fmt.Sprintf("Joined %v", channel))
 		}
 	})
 
