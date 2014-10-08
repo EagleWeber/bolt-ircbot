@@ -133,14 +133,14 @@ func main() {
 	})
 
 	AddAction(ircproj, `#(kitten|cat)`,  "starts to meow at %v... *purr* *purr*")
-	AddAction(ircproj, `#dog`,  "rolls over, and now wants it's tummy scratched by %v")
+	AddAction(ircproj, `#dog`,  "rolls over, and wants its tummy scratched by %v")
 	AddAction(ircproj, `#beer`,  "return $this->app['beer']->serve('everyone')->sendBillTo('%v');")
 	AddAction(ircproj, `#coffee`,  "turns on the espresso machine for %v")
-	AddAction(ircproj, `#hotchocolate`,  "I believe in miracles, %v, you sexy thing!")
+	AddAction(ircproj, `#hotchocolate`,  "believes in miracles, %v, you sexy thing!")
 	AddAction(ircproj, `#tea`,  "has boiled some water, and begins to brew %v a nice cup of tea.")
 	AddAction(ircproj, `#wine`,  "opens a bottle of Château Lafite at %v's request!")
 	AddAction(ircproj, `#tequila`,  "drinks one Tequila, two Tequilas, three Tequilas... floor!")
-	AddAction(ircproj, `#whiskey`,  "pours a nip of Glenavon Special for %v's.")
+	AddAction(ircproj, `#whiskey`,  "pours a nip of Glenavon Special for %v.")
 	AddAction(ircproj, `#shiraz`,  "wonders if %v has ever had a Heathcote Estate Shiraz?")
 
 	ircproj.Loop()
