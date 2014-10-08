@@ -7,7 +7,7 @@ Based on work by [GitHub user soh335](https://github.com/soh335/github-issue-irc
 ## How to install
 
 ```
-go get github.com/GawainLynch/go-ircevent
+go get github.com/thoj/go-ircevent
 go get github.com/GawainLynch/bolt-ircbot
 go install github.com/GawainLynch/bolt-ircbot
 ```

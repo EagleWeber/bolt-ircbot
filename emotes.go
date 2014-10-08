@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/GawainLynch/go-ircevent"
+	"github.com/thoj/go-ircevent"
 	"regexp"
 )
 
