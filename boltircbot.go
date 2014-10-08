@@ -122,8 +122,13 @@ func main() {
 				log.Println(err)
 				continue
 			}
-
-			ircproj.Noticef(event.Arguments[0], "#%v %v %v", m["number"].(float64), m["title"].(string), m["html_url"].(string))
+			
+			if m["number"].(float64) == 1555 {
+			    // Props to Adrian Guenter
+			    ircproj.Actionf(event.Arguments[0], "warns %v that #1555 nearly caused the end of the known universe and should never be mentioned again", event.Nick)
+			} else {
+				ircproj.Noticef(event.Arguments[0], "#%v %v %v", m["number"].(float64), m["title"].(string), m["html_url"].(string))
+			}
 		}
 	})
 
