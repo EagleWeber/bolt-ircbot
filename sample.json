@@ -12,5 +12,8 @@
                 "token": "github auth token",
                 "owner": "github repository owner",
                 "repos": "github repository name"
+        },
+        "database": {
+            "karma": "/path/to/database/karma.db"
         }
 }
