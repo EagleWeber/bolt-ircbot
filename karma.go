@@ -69,7 +69,7 @@ func GetKarma(c *Config, name string) (int, error) {
 	rows := db.QueryRow(sqlStmt).Scan(&score)
 
 	if rows == sql.ErrNoRows {
-		log.Printf("GetKarma() no user with that ID.")
+		log.Printf(fmt.Sprintf("GetKarma() no user with that ID: %v", name))
 		return score, rows
 	} else if rows != nil {
 		log.Printf(fmt.Sprintf("GetKarma() query failed:\n	%s\n	%s", rows, sqlStmt))
@@ -133,8 +133,8 @@ func AddActionKarma(c *Config, ircproj *irc.Connection) error {
 			msg := strings.Trim(event.Arguments[1], " ")
 			tokens := strings.Split(msg, " ")
 			
-			// TODO Get the list of users in channel now
-			//ircproj.SendRawf("NAMES %v", event.Arguments[0])
+			// Update the list of users in channel now
+			ircproj.SendRawf("NAMES %v", event.Arguments[0])
 
 			for _, element := range tokens {
 				if strings.HasPrefix(element, "#") {
@@ -164,9 +164,8 @@ func AddActionKarma(c *Config, ircproj *irc.Connection) error {
 		}
 	})
 	
-	ircproj.AddCallback("NAMES", func(event *irc.Event) {
-		log.Println("Got some names")
-		log.Println(event.Arguments[1])
+	ircproj.AddCallback("353", func(event *irc.Event) {
+		ChannelUsers = event.Arguments[3]
 	})
 
 	return nil

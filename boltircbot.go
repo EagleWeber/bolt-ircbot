@@ -15,6 +15,7 @@ import (
 	"regexp"
 )
 
+var ChannelUsers string
 var config = flag.String("config", "", "configuration file")
 
 type Config struct {
