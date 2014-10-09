@@ -165,8 +165,19 @@ func AddActionKarma(c *Config, ircproj *irc.Connection) error {
 	})
 	
 	ircproj.AddCallback("353", func(event *irc.Event) {
-		ChannelUsers = event.Arguments[3]
+	        // Get a list of users and remove the "@" sign for chanops
+	        s := strings.Replace(event.Arguments[3], "@", "", -1)
+	        ChannelUsers = strings.Fields(s)
 	})
 
 	return nil
+}
+
+func inArray(a string, list []string) bool {
+    for _, b := range list {
+        if b == a {
+            return true
+        }
+    }
+    return false
 }
