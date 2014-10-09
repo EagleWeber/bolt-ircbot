@@ -146,7 +146,7 @@ func main() {
 	AddAction(ircproj, `#hotchocolate`,  "believes in miracles, %v, you sexy thing!")
 	AddAction(ircproj, `#tea`,  "has boiled some water, and begins to brew %v a nice cup of tea.")
 	AddAction(ircproj, `#wine`,  "opens a bottle of Château Lafite at %v's request!")
-	AddAction(ircproj, `#tequila`,  "drinks one Tequila, two Tequilas, three Tequilas... floor!")
+	AddAction(ircproj, `#tequila`,  "drinks one Tequila, two Tequilas, three Tequilas... floor! All yours, %v")
 	AddAction(ircproj, `#whisky`,  "pours a nip of Glenavon Special for %v.")
 	AddAction(ircproj, `#whiskey`,  "takes a swig of Jameson, hands the bottle to %v, and sings - \"Whack fol de daddy-o, There's whiskey in the jar.\"")
 	AddAction(ircproj, `#shiraz`,  "wonders if %v has ever had a Heathcote Estate Shiraz?")
