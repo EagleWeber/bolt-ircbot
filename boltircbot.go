@@ -32,6 +32,9 @@ type Config struct {
 		Owner string `json:"owner"`
 		Repos string `json:"repos"`
 	} `json:"github"`
+	Database struct {
+		Karma string `json:"karma"`
+	} `json:"database"`
 }
 
 func (c *Config) Load(filename string) error {
@@ -151,7 +154,7 @@ func main() {
 	AddAction(ircproj, `#whiskey`,  "takes a swig of Jameson, hands the bottle to %v, and sings - \"Whack fol de daddy-o, There's whiskey in the jar.\"")
 	AddAction(ircproj, `#shiraz`,  "wonders if %v has ever had a Heathcote Estate Shiraz?")
 	
-	AddActionKarma(ircproj)
+	AddActionKarma(c, ircproj)
 
 	ircproj.Loop()
 }

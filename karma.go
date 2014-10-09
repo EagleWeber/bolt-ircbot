@@ -11,22 +11,31 @@ import (
 	"strings"
 )
 
-const dbname = "var/bolt-ircbot/karma.db"
 const table = "karma"
 
-func Exists(name string) bool {
-	if _, err := os.Stat(name); err != nil {
-		if os.IsNotExist(err) {
-			return false
-		}
+func getDb(c *Config) (*sql.DB, error) {
+	var db *sql.DB
+	var err error
+	
+	// 
+	if _, err := os.Stat(c.Database.Karma); os.IsNotExist(err) {
+		db, err = CreateDb(c)
+	} else {
+		db, err = sql.Open("sqlite3", c.Database.Karma)
 	}
-	return true
+
+	if err != nil {
+		log.Println(err)
+		return db, err
+	}
+
+	return db, nil
 }
 
-func CreateDb() (*sql.DB, error) {
+func CreateDb(c *Config) (*sql.DB, error) {
 
 	// sql.Open will create a new database file if one does not exist
-	db, err := sql.Open("sqlite3", dbname)
+	db, err := sql.Open("sqlite3", c.Database.Karma)
 	if err != nil {
 		log.Printf("Error in CreateDb()\n	%q\n", err)
 	}
@@ -44,11 +53,11 @@ func CreateDb() (*sql.DB, error) {
 	return db, nil
 }
 
-func GetKarma(name string) (int, error) {
+func GetKarma(c *Config, name string) (int, error) {
 
 	var score int
 
-	db, err := getDb()
+	db, err := getDb(c)
 	defer db.Close()
 
 	if err != nil {
@@ -63,19 +72,19 @@ func GetKarma(name string) (int, error) {
 		log.Printf("GetKarma() no user with that ID.")
 		return score, rows
 	} else if rows != nil {
-		log.Printf(fmt.Sprintf("GetKarma query failed:\n	%s\n	%s", rows, sqlStmt))
+		log.Printf(fmt.Sprintf("GetKarma() query failed:\n	%s\n	%s", rows, sqlStmt))
 		return score, rows
 	}
 
 	return score, nil
 }
 
-func AddKarma(name string) (int, error) {
+func AddKarma(c *Config, name string) (int, error) {
 
 	var score int
 	var err error
 
-	db, err := getDb()
+	db, err := getDb(c)
 	defer db.Close()
 
 	if err != nil {
@@ -112,26 +121,7 @@ func AddKarma(name string) (int, error) {
 	return score, nil
 }
 
-func getDb() (*sql.DB, error) {
-	var db *sql.DB
-	var err error
-	//var err error
-
-	if Exists(dbname) {
-		db, err = sql.Open("sqlite3", dbname)
-	} else {
-		db, err = CreateDb()
-	}
-
-	if err != nil {
-		log.Println(err)
-		return db, err
-	}
-
-	return db, nil
-}
-
-func AddActionKarma(ircproj *irc.Connection) error {
+func AddActionKarma(c *Config, ircproj *irc.Connection) error {
 
 	hash := `#karma`
 	
@@ -153,7 +143,7 @@ func AddActionKarma(ircproj *irc.Connection) error {
 			
 				// Catch some using their own name
 				if event.Nick == element {
-					karma, err := GetKarma(event.Nick)
+					karma, err := GetKarma(c, event.Nick)
 					
 					if err != nil {
 						ircproj.Privmsgf(event.Arguments[0], "BoltKarma for %s is currently zero", event.Nick)
@@ -161,7 +151,7 @@ func AddActionKarma(ircproj *irc.Connection) error {
 						ircproj.Privmsgf(event.Arguments[0], "BoltKarma for %s is currently %d", event.Nick, karma)
 					}
 				} else {
-					karma, err := AddKarma(element)
+					karma, err := AddKarma(c, element)
 					
 					if err != nil {
 						// log an error
