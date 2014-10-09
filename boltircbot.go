@@ -150,7 +150,8 @@ func main() {
 	AddAction(ircproj, `#whisky`,  "pours a nip of Glenavon Special for %v.")
 	AddAction(ircproj, `#whiskey`,  "takes a swig of Jameson, hands the bottle to %v, and sings - \"Whack fol de daddy-o, There's whiskey in the jar.\"")
 	AddAction(ircproj, `#shiraz`,  "wonders if %v has ever had a Heathcote Estate Shiraz?")
-	AddAction(ircproj, `#karma`,  "%v +1")
+	
+	AddActionKarma(ircproj)
 
 	ircproj.Loop()
 }
