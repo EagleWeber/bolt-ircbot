@@ -16,8 +16,8 @@ const table = "karma"
 func getDb(c *Config) (*sql.DB, error) {
 	var db *sql.DB
 	var err error
-	
-	// 
+
+	//
 	if _, err := os.Stat(c.Database.Karma); os.IsNotExist(err) {
 		db, err = CreateDb(c)
 	} else {
@@ -124,7 +124,7 @@ func AddKarma(c *Config, name string) (int, error) {
 func AddActionKarma(c *Config, ircproj *irc.Connection) error {
 
 	hash := `#karma`
-	
+
 	x := regexp.MustCompile(hash)
 	ircproj.AddCallback("PRIVMSG", func(event *irc.Event) {
 
@@ -133,32 +133,31 @@ func AddActionKarma(c *Config, ircproj *irc.Connection) error {
 			msg := strings.Trim(event.Arguments[1], " ")
 			tokens := strings.Split(msg, " ")
 			
+			if msg == hash {
+			    tellOwnKarma(c, ircproj, event)
+			    return
+			}
+
 			// Update the list of users in channel now
 			ircproj.SendRawf("NAMES %v", event.Arguments[0])
 
 			for _, element := range tokens {
-			    // Don't react to the '#karma' hash
+				// Don't react to the '#karma' hash
 				if strings.HasPrefix(element, "#") {
 					continue
 				}
 
-			    if inArray(element, ChannelUsers) == false {
+				if inArray(element, ChannelUsers) == false {
 					ircproj.Privmsgf(event.Arguments[0], "Sorry but karma can only be added for channel members, %v isn't here and they lose out!", element)
 					continue
 				}
-			
+
 				// Catch some using their own name
-				if event.Nick == element {
-					karma, err := GetKarma(c, event.Nick)
-					
-					if err != nil {
-						ircproj.Privmsgf(event.Arguments[0], "BoltKarma for %s is currently zero", event.Nick)
-					} else {
-						ircproj.Privmsgf(event.Arguments[0], "BoltKarma for %s is currently %d", event.Nick, karma)
-					}
+				if event.Nick == element || msg == hash {
+					tellOwnKarma(c, ircproj, event)
 				} else {
 					karma, err := AddKarma(c, element)
-					
+
 					if err != nil {
 						// log an error
 						log.Println(fmt.Sprintf("Ooopsy %s", err))
@@ -173,11 +172,21 @@ func AddActionKarma(c *Config, ircproj *irc.Connection) error {
 	return nil
 }
 
+func tellOwnKarma(c *Config, ircproj *irc.Connection, event *irc.Event) {
+    karma, err := GetKarma(c, event.Nick)
+
+	if err != nil {
+		ircproj.Privmsgf(event.Arguments[0], "BoltKarma for %s is currently zero", event.Nick)
+	} else {
+		ircproj.Privmsgf(event.Arguments[0], "BoltKarma for %s is currently %d", event.Nick, karma)
+	}
+}
+
 func inArray(a string, list []string) bool {
-    for _, b := range list {
-        if b == a {
-            return true
-        }
-    }
-    return false
+	for _, b := range list {
+		if b == a {
+			return true
+		}
+	}
+	return false
 }
