@@ -166,6 +166,7 @@ func main() {
 	AddActionf(ircproj, `#whisky`,  "pours a nip of Glenavon Special for %v.")
 	AddActionf(ircproj, `#whiskey`,  "takes a swig of Jameson, hands the bottle to %v, and sings - \"Whack fol de daddy-o, There's whiskey in the jar.\"")
 	AddActionf(ircproj, `#shiraz`,  "wonders if %v has ever had a Heathcote Estate Shiraz?")
+	AddActionf(ircproj, `#water`,  "pours water over %v...  That is what they wanted, right?")
 	
 	AddAction(ircproj, `#tequila`,  "drinks one Tequila, two Tequilas, three Tequilas... floor!")
 	
