@@ -137,12 +137,13 @@ func AddActionKarma(c *Config, ircproj *irc.Connection) error {
 			ircproj.SendRawf("NAMES %v", event.Arguments[0])
 
 			for _, element := range tokens {
-			    if inArray(element, ChannelUsers) == false {
-					ircproj.Privmsgf(event.Arguments[0], "Sorry but karma can only be added for channel members, %v isn't here and they lose out!", event.Nick)
+			    // Don't react to the '#karma' hash
+				if strings.HasPrefix(element, "#") {
 					continue
 				}
 
-				if strings.HasPrefix(element, "#") {
+			    if inArray(element, ChannelUsers) == false {
+					ircproj.Privmsgf(event.Arguments[0], "Sorry but karma can only be added for channel members, %v isn't here and they lose out!", element)
 					continue
 				}
 			
