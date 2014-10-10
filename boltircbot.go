@@ -155,6 +155,9 @@ func main() {
 			ircproj.Privmsgf(event.Arguments[0], RandomMessage(), event.Nick)
 		}
 	})
+	
+	// Asimov's Laws - Three Laws of Robotics
+	AddPrivmsgRules(ircproj)
 
 	AddActionf(ircproj, `#(kitten|cat)`,  "starts to meow at %v... *purr* *purr*")
 	AddActionf(ircproj, `#dog`,  "rolls over, and wants its tummy scratched by %v")
