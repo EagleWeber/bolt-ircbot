@@ -13,6 +13,8 @@ import (
 	"net/http"
 	"net/url"
 	"regexp"
+	"strings"
+	"time"
 )
 
 var ChannelUsers []string
@@ -127,7 +129,12 @@ func main() {
 				continue
 			}
 			
-			if m["number"].(float64) == 1555 {
+			if m["number"].(float64) == 1 {
+			    // I am a bot, I can have my own rule #1
+			    ircproj.Notice(event.Arguments[0], "#1 Port Bolt to Go to keep the bot happy https://github.com/bolt/bolt/issues/1")
+			    time.Sleep(5 * time.Second)
+			    ircproj.Action(event.Arguments[0], "is written in Go, and therefore isn't allowed to like PHP")
+			} else if m["number"].(float64) == 1555 {
 			    // Props to Adrian Guenter
 			    ircproj.Actionf(event.Arguments[0], "warns %v that #1555 nearly caused the end of the known universe and should never be mentioned again", event.Nick)
 			} else {
