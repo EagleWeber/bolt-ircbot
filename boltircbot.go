@@ -156,17 +156,17 @@ func main() {
 		}
 	})
 
-	AddAction(ircproj, `#(kitten|cat)`,  "starts to meow at %v... *purr* *purr*")
-	AddAction(ircproj, `#dog`,  "rolls over, and wants its tummy scratched by %v")
-	AddAction(ircproj, `#beer`,  "return $this->app['beer']->serve('everyone')->sendBillTo('%v');")
-	AddAction(ircproj, `#coffee`,  "turns on the espresso machine for %v")
-	AddAction(ircproj, `#hotchocolate`,  "believes in miracles, %v, you sexy thing!")
-	AddAction(ircproj, `#tea`,  "has boiled some water, and begins to brew %v a nice cup of tea.")
-	AddAction(ircproj, `#wine`,  "opens a bottle of Château Lafite at %v's request!")
-	AddAction(ircproj, `#tequila`,  "drinks one Tequila, two Tequilas, three Tequilas... floor! All yours, %v")
-	AddAction(ircproj, `#whisky`,  "pours a nip of Glenavon Special for %v.")
-	AddAction(ircproj, `#whiskey`,  "takes a swig of Jameson, hands the bottle to %v, and sings - \"Whack fol de daddy-o, There's whiskey in the jar.\"")
-	AddAction(ircproj, `#shiraz`,  "wonders if %v has ever had a Heathcote Estate Shiraz?")
+	AddActionf(ircproj, `#(kitten|cat)`,  "starts to meow at %v... *purr* *purr*")
+	AddActionf(ircproj, `#dog`,  "rolls over, and wants its tummy scratched by %v")
+	AddActionf(ircproj, `#beer`,  "return $this->app['beer']->serve('everyone')->sendBillTo('%v');")
+	AddActionf(ircproj, `#coffee`,  "turns on the espresso machine for %v")
+	AddActionf(ircproj, `#hotchocolate`,  "believes in miracles, %v, you sexy thing!")
+	AddActionf(ircproj, `#tea`,  "has boiled some water, and begins to brew %v a nice cup of tea.")
+	AddActionf(ircproj, `#wine`,  "opens a bottle of Château Lafite at %v's request!")
+	AddActionf(ircproj, `#tequila`,  "drinks one Tequila, two Tequilas, three Tequilas... floor! All yours, %v")
+	AddActionf(ircproj, `#whisky`,  "pours a nip of Glenavon Special for %v.")
+	AddActionf(ircproj, `#whiskey`,  "takes a swig of Jameson, hands the bottle to %v, and sings - \"Whack fol de daddy-o, There's whiskey in the jar.\"")
+	AddActionf(ircproj, `#shiraz`,  "wonders if %v has ever had a Heathcote Estate Shiraz?")
 	
 	AddActionKarma(c, ircproj)
 

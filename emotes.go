@@ -5,7 +5,7 @@ import (
 	"regexp"
 )
 
-func AddAction(ircproj *irc.Connection, hash string, response string) error {
+func AddActionf(ircproj *irc.Connection, hash string, response string) error {
 	x := regexp.MustCompile(hash)
 	ircproj.AddCallback("PRIVMSG", func(event *irc.Event) {
 		matches := x.FindAllStringSubmatch(event.Message(), -1)
