@@ -152,6 +152,7 @@ func main() {
 	// Just for Bopp, for now
 	ircproj.AddCallback("JOIN", func(event *irc.Event) {
 		if event.Nick == "Bopp" {
+		    time.Sleep(5 * time.Second)
 			ircproj.Privmsgf(event.Arguments[0], RandomMessage(), event.Nick)
 		}
 	})
