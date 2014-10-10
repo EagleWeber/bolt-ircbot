@@ -135,6 +135,12 @@ func main() {
 			}
 		}
 	})
+	
+	// Get a list of users and remove the "@" sign for chanops
+	ircproj.AddCallback("353", func(event *irc.Event) {
+	        s := strings.Replace(event.Arguments[3], "@", "", -1)
+	        ChannelUsers = strings.Fields(s)
+	})
 
 	// Just for Bopp, for now
 	ircproj.AddCallback("JOIN", func(event *irc.Event) {
