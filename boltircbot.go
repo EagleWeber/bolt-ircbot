@@ -163,10 +163,11 @@ func main() {
 	AddActionf(ircproj, `#hotchocolate`,  "believes in miracles, %v, you sexy thing!")
 	AddActionf(ircproj, `#tea`,  "has boiled some water, and begins to brew %v a nice cup of tea.")
 	AddActionf(ircproj, `#wine`,  "opens a bottle of Château Lafite at %v's request!")
-	AddActionf(ircproj, `#tequila`,  "drinks one Tequila, two Tequilas, three Tequilas... floor! All yours, %v")
 	AddActionf(ircproj, `#whisky`,  "pours a nip of Glenavon Special for %v.")
 	AddActionf(ircproj, `#whiskey`,  "takes a swig of Jameson, hands the bottle to %v, and sings - \"Whack fol de daddy-o, There's whiskey in the jar.\"")
 	AddActionf(ircproj, `#shiraz`,  "wonders if %v has ever had a Heathcote Estate Shiraz?")
+	
+	AddAction(ircproj, `#tequila`,  "drinks one Tequila, two Tequilas, three Tequilas... floor!")
 	
 	AddActionKarma(c, ircproj)
 
