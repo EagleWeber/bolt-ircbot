@@ -35,19 +35,19 @@ func CreateFile(name string) error {
 }
 
 func StartLogger(c *Config, channel string) *os.File {
-	
+
 	logfile := fmt.Sprintf("%v/log-%v.log", c.Logging.Location, channel)
 
 	if !FileExists(logfile) {
 		CreateFile(logfile)
 	}
-		
+
 	logger, err := os.OpenFile(logfile, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
 
 	if err != nil {
 		log.Println("Error opening log file: %v", err)
 	}
-	
+
 	return logger
 }
 
@@ -56,16 +56,16 @@ func WriteLog(c *Config, logger *os.File, nick string, text string) {
 	t1 := time.Now()
 	f1 := t1.Format(RFC3339_SECONDS)
 	line := fmt.Sprintf("%v\t<%v>\t%v\n", f1, nick, text)
-	
+
 	n3, err := logger.WriteString(line)
-	
+
 	if err != nil {
 		log.Println(fmt.Sprintf("Tried to write: %v", line))
 		log.Println(fmt.Sprintf("Error writing log string: %v", err))
 	}
-	
+
 	fmt.Printf("wrote %d bytes\n", n3)
-	
+
 	logger.Sync()
 
 	log.Println(text)

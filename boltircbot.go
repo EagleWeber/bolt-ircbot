@@ -82,8 +82,8 @@ func main() {
 	if err := c.Load(*config); err != nil {
 		log.Fatal(err)
 	}
-	
-	// Logs 
+
+	// Logs
 	logs := make(map[string]*os.File)
 
 	ircproj := irc.IRC(c.Irc.Nickname, c.Irc.Nickname)
@@ -97,12 +97,12 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	
+
 	ircproj.AddCallback("001", func(event *irc.Event) {
 		for _, channel := range c.Irc.Channels {
 			ircproj.Join(channel)
 			log.Println(fmt.Sprintf("Joined %v", channel))
-			
+
 			// Start the logger for this channel
 			logs[channel] = StartLogger(c, channel)
 
@@ -110,11 +110,11 @@ func main() {
 			//defer logs[channel].Close()
 		}
 	})
-	
+
 	// Logging
 	ircproj.AddCallback("PRIVMSG", func(event *irc.Event) {
 		channel := event.Arguments[0]
-	        WriteLog(c, logs[channel], event.Nick, event.Message())
+		WriteLog(c, logs[channel], event.Nick, event.Message())
 	})
 
 	r := regexp.MustCompile(`#(\d+)`)
@@ -147,35 +147,35 @@ func main() {
 				log.Println(err)
 				continue
 			}
-			
+
 			if m["number"].(float64) == 1 {
-			    // I am a bot, I can have my own rule #1
-			    ircproj.Noticef(event.Arguments[0], "#1 Port Bolt to Go to keep %v happy https://github.com/bolt/bolt/issues/1", c.Irc.Nickname)
-			    time.Sleep(5 * time.Second)
-			    ircproj.Action(event.Arguments[0], "is written in Go, and therefore isn't allowed to like PHP")
+				// I am a bot, I can have my own rule #1
+				ircproj.Noticef(event.Arguments[0], "#1 Port Bolt to Go to keep %v happy https://github.com/bolt/bolt/issues/1", c.Irc.Nickname)
+				time.Sleep(5 * time.Second)
+				ircproj.Action(event.Arguments[0], "is written in Go, and therefore isn't allowed to like PHP")
 			} else if m["number"].(float64) == 1555 {
-			    // Props to Adrian Guenter
-			    ircproj.Actionf(event.Arguments[0], "warns %v that #1555 nearly caused the end of the known universe and should never be mentioned again", event.Nick)
+				// Props to Adrian Guenter
+				ircproj.Actionf(event.Arguments[0], "warns %v that #1555 nearly caused the end of the known universe and should never be mentioned again", event.Nick)
 			} else {
 				ircproj.Noticef(event.Arguments[0], "#%v %v %v", m["number"].(float64), m["title"].(string), m["html_url"].(string))
 			}
 		}
 	})
-	
+
 	// Get a list of users and remove the "@" sign for chanops
 	ircproj.AddCallback("353", func(event *irc.Event) {
-	        s := strings.Replace(event.Arguments[3], "@", "", -1)
-	        ChannelUsers = strings.Fields(s)
+		s := strings.Replace(event.Arguments[3], "@", "", -1)
+		ChannelUsers = strings.Fields(s)
 	})
 
 	// Just for Bopp, for now
 	ircproj.AddCallback("JOIN", func(event *irc.Event) {
 		if event.Nick == "Bopp" {
-		    time.Sleep(5 * time.Second)
+			time.Sleep(5 * time.Second)
 			ircproj.Privmsgf(event.Arguments[0], RandomMessage(), event.Nick)
 		}
 	})
-	
+
 	// Asimov's Laws - Three Laws of Robotics
 	AddPrivmsgRules(ircproj)
 
@@ -192,10 +192,10 @@ func main() {
 	AddActionf(ircproj, `#shiraz`, "wonders if %v has ever had a Heathcote Estate Shiraz?")
 	AddActionf(ircproj, `#water`, "pours water over %v...  That is what they wanted, right?")
 	AddActionf(ircproj, `#(PR|pr|Pr|pR)`, "gets the idea that Bopp should take care of %v's pull requests or kittens may cry...")
-	
+
 	AddAction(ircproj, `#tequila`, "drinks one Tequila, two Tequilas, three Tequilas... floor!")
 	AddAction(ircproj, `(WP|wp|Wordpress|WordPress|wordpress)`, "notes that if code was poetry, WordPress would have been written in Go...  It's more like \"code is pooetry if you ask this bot\"")
-	
+
 	AddActionKarma(c, ircproj)
 
 	ircproj.Loop()
