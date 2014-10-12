@@ -1,9 +1,14 @@
 package main
 
 import (
+	//"bytes"
+	"fmt"
 	"log"
 	"os"
+	"time"
 )
+
+const RFC3339_SECONDS = "2006-01-02 03:04:05-07:00"
 
 func FileExists(name string) bool {
 	if _, err := os.Stat(name); err != nil {
@@ -29,21 +34,39 @@ func CreateFile(name string) error {
 	return nil
 }
 
-const logfile = "var/log/irc.log"
+func StartLogger(c *Config, channel string) *os.File {
+	
+	logfile := fmt.Sprintf("%v/log-%v.log", c.Logging.Location, channel)
 
-func WriteLog(text string) {
 	if !FileExists(logfile) {
 		CreateFile(logfile)
 	}
-
-	f, err := os.OpenFile(logfile, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
+		
+	logger, err := os.OpenFile(logfile, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
 
 	if err != nil {
-		log.Fatal("Error opening log file: %v", err)
+		log.Println("Error opening log file: %v", err)
 	}
+	
+	return logger
+}
 
-	defer f.Close()
+func WriteLog(c *Config, logger *os.File, nick string, text string) {
 
-	log.SetOutput(f)
+	t1 := time.Now()
+	f1 := t1.Format(RFC3339_SECONDS)
+	line := fmt.Sprintf("%v\t<%v>\t%v\n", f1, nick, text)
+	
+	n3, err := logger.WriteString(line)
+	
+	if err != nil {
+		log.Println(fmt.Sprintf("Tried to write: %v", line))
+		log.Println(fmt.Sprintf("Error writing log string: %v", err))
+	}
+	
+	fmt.Printf("wrote %d bytes\n", n3)
+	
+	logger.Sync()
+
 	log.Println(text)
 }

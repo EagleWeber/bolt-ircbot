@@ -12,6 +12,7 @@ import (
 	"net"
 	"net/http"
 	"net/url"
+	"os"
 	"regexp"
 	"strings"
 	"time"
@@ -38,6 +39,9 @@ type Config struct {
 	Database struct {
 		Karma string `json:"karma"`
 	} `json:"database"`
+	Logging struct {
+		Location string `json:"location"`
+	} `json:"logging"`
 }
 
 func (c *Config) Load(filename string) error {
@@ -78,6 +82,9 @@ func main() {
 	if err := c.Load(*config); err != nil {
 		log.Fatal(err)
 	}
+	
+	// Logs 
+	logs := make(map[string]*os.File)
 
 	ircproj := irc.IRC(c.Irc.Nickname, c.Irc.Nickname)
 	ircproj.UseTLS = c.Irc.Ssl
@@ -90,12 +97,24 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
+	
 	ircproj.AddCallback("001", func(event *irc.Event) {
 		for _, channel := range c.Irc.Channels {
 			ircproj.Join(channel)
 			log.Println(fmt.Sprintf("Joined %v", channel))
+			
+			// Start the logger for this channel
+			logs[channel] = StartLogger(c, channel)
+
+			// Set the log to close on exit
+			//defer logs[channel].Close()
 		}
+	})
+	
+	// Logging
+	ircproj.AddCallback("PRIVMSG", func(event *irc.Event) {
+		channel := event.Arguments[0]
+	        WriteLog(c, logs[channel], event.Nick, event.Message())
 	})
 
 	r := regexp.MustCompile(`#(\d+)`)
