@@ -57,7 +57,7 @@ func WriteLog(c *Config, logger *os.File, nick string, text string) {
 	f1 := t1.Format(RFC3339_SECONDS)
 	line := fmt.Sprintf("%v\t<%v>\t%v\n", f1, nick, text)
 
-	n3, err := logger.WriteString(line)
+	_, err := logger.WriteString(line)
 
 	if err != nil {
 		log.Println(fmt.Sprintf("Tried to write: %v", line))
