@@ -45,7 +45,7 @@ func StartLogger(c *Config, channel string) *os.File {
 	logger, err := os.OpenFile(logfile, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
 
 	if err != nil {
-		log.Println("Error opening log file: %v", err)
+		log.Println(fmt.Sprintf("Error opening log file: %v", err))
 	}
 
 	return logger
@@ -63,8 +63,6 @@ func WriteLog(c *Config, logger *os.File, nick string, text string) {
 		log.Println(fmt.Sprintf("Tried to write: %v", line))
 		log.Println(fmt.Sprintf("Error writing log string: %v", err))
 	}
-
-	fmt.Printf("wrote %d bytes\n", n3)
 
 	logger.Sync()
 }
