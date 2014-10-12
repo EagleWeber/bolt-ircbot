@@ -67,6 +67,4 @@ func WriteLog(c *Config, logger *os.File, nick string, text string) {
 	fmt.Printf("wrote %d bytes\n", n3)
 
 	logger.Sync()
-
-	log.Println(text)
 }
