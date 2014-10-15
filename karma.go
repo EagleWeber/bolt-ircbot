@@ -148,6 +148,12 @@ func AddActionKarma(c *Config, ircproj *irc.Connection) error {
 				if strings.HasPrefix(element, "#") {
 					continue
 				}
+				
+				if element == "Chameleon" || element == "chameleon" {
+				    ircproj.Privmsgf(event.Arguments[0], "Karma Karma Karma Karma Karma Chameleon... You come and go... You come and go... Loving would be easy if your colors were like my dream... Red, gold and green... Red, gold and green")
+				    continue
+				}
+	
 
 				if inArray(element, ChannelUsers) == false {
 					ircproj.Privmsgf(event.Arguments[0], "Sorry but karma can only be added for channel members, %v isn't here and they lose out!", element)
