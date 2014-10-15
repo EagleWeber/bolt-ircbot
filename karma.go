@@ -9,6 +9,7 @@ import (
 	"os"
 	"regexp"
 	"strings"
+	"time"
 )
 
 const table = "karma"
@@ -140,6 +141,7 @@ func AddActionKarma(c *Config, ircproj *irc.Connection) error {
 
 			// Update the list of users in channel now
 			ircproj.SendRawf("NAMES %v", event.Arguments[0])
+			time.Sleep(3 * time.Second)
 
 			for _, element := range tokens {
 				// Don't react to the '#karma' hash
