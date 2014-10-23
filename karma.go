@@ -156,6 +156,7 @@ func AddActionKarma(c *Config, ircproj *irc.Connection) error {
 				
 				if element == "tdammers" {
 				    ircproj.Privmsg(event.Arguments[0], "tdammers is a deity and as such is above awards of karama, his is already beyond that of you mortals!")
+					continue
 				}
 	
 
