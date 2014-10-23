@@ -122,6 +122,48 @@ func AddKarma(c *Config, name string) (int, error) {
 	return score, nil
 }
 
+func SubKarma(c *Config, name string) (int, error) {
+
+	var score int
+	var err error
+
+	db, err := getDb(c)
+	defer db.Close()
+
+	if err != nil {
+		return 0, nil
+	}
+
+	// Get the current score, if not found, a value of 0 is returned
+	sqlStmt := fmt.Sprintf("SELECT score from %v WHERE name = '%v' LIMIT 1", table, name)
+	rows := db.QueryRow(sqlStmt).Scan(&score)
+	if rows != nil {
+		log.Println(fmt.Sprintf("SubKarma() query failed: %q - %s\n", rows, sqlStmt))
+	}
+
+	// Increment the score value
+	score--
+
+	// Insert or update the users record
+	if rows == sql.ErrNoRows {
+		sqlStmt := fmt.Sprintf("INSERT INTO %v (name, score) VALUES ('%v', '%d');", table, name, score)
+		//log.Println(fmt.Sprintf("INSERT INTO %v (name, score) VALUES ('%v', '%d');", table, name, score))
+		_, err = db.Exec(sqlStmt)
+		if err != nil {
+			log.Println(fmt.Sprintf("INSERT failed: %s", err))
+		}
+	} else {
+		sqlStmt := fmt.Sprintf("UPDATE %v SET score = '%d' WHERE name = '%s';", table, score, name)
+		//log.Println(fmt.Sprintf("UPDATE %v SET score = '%d' WHERE name = '%s';", table, score, name))
+		_, err = db.Exec(sqlStmt)
+		if err != nil {
+			log.Println(fmt.Sprintf("UPDATE failed: %s", err))
+		}
+	}
+
+	return score, nil
+}
+
 func AddActionKarma(c *Config, ircproj *irc.Connection) error {
 
 	hash := `#karma`
@@ -141,7 +183,7 @@ func AddActionKarma(c *Config, ircproj *irc.Connection) error {
 
 			// Update the list of users in channel now
 			ircproj.SendRawf("NAMES %v", event.Arguments[0])
-			time.Sleep(3 * time.Second)
+			time.Sleep(2 * time.Second)
 
 			for _, element := range tokens {
 				// Don't react to the '#karma' hash
@@ -154,11 +196,10 @@ func AddActionKarma(c *Config, ircproj *irc.Connection) error {
 				    continue
 				}
 				
-				if element == "tdammers" {
-				    ircproj.Privmsg(event.Arguments[0], "tdammers is a deity and as such is above awards of karama, his is already beyond that of you mortals!")
-					continue
-				}
-	
+//				if element == "tdammers" {
+//				    ircproj.Privmsg(event.Arguments[0], "tdammers is a deity and as such is above awards of karama, his is already beyond that of you mortals!")
+//					continue
+//				}
 
 				if inArray(element, ChannelUsers) == false {
 					ircproj.Privmsgf(event.Arguments[0], "Sorry but karma can only be added for channel members, %v isn't here and they lose out!", element)
@@ -169,7 +210,14 @@ func AddActionKarma(c *Config, ircproj *irc.Connection) error {
 				if event.Nick == element || msg == hash {
 					tellOwnKarma(c, ircproj, event)
 				} else {
-					karma, err := AddKarma(c, element)
+				    var karma int
+				    var err error
+				    
+				    if element == "tdammers" {
+				        karma, err = SubKarma(c, element)
+				    } else {
+						karma, err = AddKarma(c, element)
+					}
 
 					if err != nil {
 						// log an error
