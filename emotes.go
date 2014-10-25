@@ -51,7 +51,7 @@ func AddPrivmsgDocs(ircproj *irc.Connection) error {
 	routes := regexp.MustCompile(`#(routes|routing)`)
 	contenttypes := regexp.MustCompile(`#(contenttypes|contenttype)`)
 	extend := regexp.MustCompile(`#(extend|themes)`)
-	extensions := regexp.MustCompile(`#extensions)`)
+	extensions := regexp.MustCompile(`#extensions`)
 	permissions := regexp.MustCompile(`#permissions`)
 	requirements := regexp.MustCompile(`#requirements`)
 	updating := regexp.MustCompile(`#(updates|updating)`)
