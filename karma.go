@@ -175,10 +175,10 @@ func AddActionKarma(c *Config, ircproj *irc.Connection) error {
 		if len(matches) > 0 {
 			msg := strings.Trim(event.Arguments[1], " ")
 			tokens := strings.Split(msg, " ")
-			
+
 			if msg == hash {
-			    tellOwnKarma(c, ircproj, event)
-			    return
+				tellOwnKarma(c, ircproj, event)
+				return
 			}
 
 			// Update the list of users in channel now
@@ -190,16 +190,16 @@ func AddActionKarma(c *Config, ircproj *irc.Connection) error {
 				if strings.HasPrefix(element, "#") {
 					continue
 				}
-				
+
 				if element == "Chameleon" || element == "chameleon" {
-				    ircproj.Privmsg(event.Arguments[0], "Karma Karma Karma Karma Karma Chameleon... You come and go... You come and go... Loving would be easy if your colors were like my dream... Red, gold and green... Red, gold and green")
-				    continue
+					ircproj.Privmsg(event.Arguments[0], "Karma Karma Karma Karma Karma Chameleon... You come and go... You come and go... Loving would be easy if your colors were like my dream... Red, gold and green... Red, gold and green")
+					continue
 				}
-				
-//				if element == "tdammers" {
-//				    ircproj.Privmsg(event.Arguments[0], "tdammers is a deity and as such is above awards of karama, his is already beyond that of you mortals!")
-//					continue
-//				}
+
+				//				if element == "tdammers" {
+				//				    ircproj.Privmsg(event.Arguments[0], "tdammers is a deity and as such is above awards of karama, his is already beyond that of you mortals!")
+				//					continue
+				//				}
 
 				if inArray(element, ChannelUsers) == false {
 					ircproj.Privmsgf(event.Arguments[0], "Sorry but karma can only be added for channel members, %v isn't here and they lose out!", element)
@@ -210,12 +210,12 @@ func AddActionKarma(c *Config, ircproj *irc.Connection) error {
 				if event.Nick == element || msg == hash {
 					tellOwnKarma(c, ircproj, event)
 				} else {
-				    var karma int
-				    var err error
-				    
-				    if element == "tdammers" {
-				        karma, err = SubKarma(c, element)
-				    } else {
+					var karma int
+					var err error
+
+					if element == "tdammers" {
+						karma, err = SubKarma(c, element)
+					} else {
 						karma, err = AddKarma(c, element)
 					}
 
@@ -234,7 +234,7 @@ func AddActionKarma(c *Config, ircproj *irc.Connection) error {
 }
 
 func tellOwnKarma(c *Config, ircproj *irc.Connection, event *irc.Event) {
-    karma, err := GetKarma(c, event.Nick)
+	karma, err := GetKarma(c, event.Nick)
 
 	if err != nil {
 		ircproj.Privmsgf(event.Arguments[0], "BoltKarma for %s is currently zero", event.Nick)

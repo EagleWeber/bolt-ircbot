@@ -7,7 +7,7 @@ import (
 )
 
 type Choice struct {
-	Message   string
+	Message string
 }
 
 func RandomMessage() string {
@@ -25,6 +25,6 @@ func RandomMessage() string {
 		fmt.Println(choices[i].Message)
 		return choices[i].Message
 	}
-	
+
 	return ""
 }
