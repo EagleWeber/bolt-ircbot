@@ -192,6 +192,7 @@ func main() {
 	AddActionf(ircproj, `#shiraz`, "wonders if %v has ever had a Heathcote Estate Shiraz?")
 	AddActionf(ircproj, `#water`, "pours water over %v...  That is what they wanted, right?")
 	AddActionf(ircproj, `#(PR|pr|Pr|pR)`, "gets the idea that Bopp should take care of %v's pull requests or kittens may cry...")
+	AddActionf(ircproj, `#vodka`, "opens a bottle of Billionaire Vodka for %v.  It's good to be the king after all!")
 	//AddActionf(ircproj, `bolt`, "calls capital_B_dangit() on %v's behalf")
 
 	AddAction(ircproj, `#popcorn`, "yells: POPCORN! GET YOUR POPCORN!")
