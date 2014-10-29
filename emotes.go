@@ -73,6 +73,7 @@ func AddPrivmsgDocs(ircproj *irc.Connection) error {
 	about := regexp.MustCompile(`#(about|introduction)`)
 	codequality := regexp.MustCompile(`#(quality|codequality)`)
 	credits := regexp.MustCompile(`#(credit|credits)`)
+	issues := regexp.MustCompile(`#issue`)
 
 	ircproj.AddCallback("PRIVMSG", func(event *irc.Event) {
 		if len(cheatsheet.FindAllStringSubmatch(event.Message(), -1)) > 0 {
@@ -161,6 +162,9 @@ func AddPrivmsgDocs(ircproj *irc.Connection) error {
 		}
 		if len(credits.FindAllStringSubmatch(event.Message(), -1)) > 0 {
 			ircproj.Privmsg(event.Arguments[0], "Credits for code used in bolt are available at https://docs.bolt.cm/credits")
+		}
+		if len(issues.FindAllStringSubmatch(event.Message(), -1)) > 0 {
+			ircproj.Privmsg(event.Arguments[0], "Bolt issue tracker available at https://github.com/bolt/bolt/issues")
 		}
 
 	})
