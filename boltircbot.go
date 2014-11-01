@@ -161,6 +161,9 @@ func main() {
 			}
 		}
 	})
+	
+	// Help
+	//AddHelp(ircproj)
 
 	// Get a list of users and remove the "@" sign for chanops
 	ircproj.AddCallback("353", func(event *irc.Event) {
