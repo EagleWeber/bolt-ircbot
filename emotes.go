@@ -44,6 +44,7 @@ func AddPrivmsgRules(ircproj *irc.Connection) error {
 }
 
 func AddPrivmsgDocs(ircproj *irc.Connection) error {
+    workmap := regexp.MustCompile(`#workmap`)
 	cheatsheet := regexp.MustCompile(`#cheatsheet`)
 	docs := regexp.MustCompile(`#docs`)
 	github := regexp.MustCompile(`#github`)
@@ -76,6 +77,9 @@ func AddPrivmsgDocs(ircproj *irc.Connection) error {
 	issues := regexp.MustCompile(`#issue`)
 
 	ircproj.AddCallback("PRIVMSG", func(event *irc.Event) {
+		if len(workmap.FindAllStringSubmatch(event.Message(), -1)) > 0 {
+			ircproj.Privmsg(event.Arguments[0], "Core Development Workmap: https://github.com/bolt/bolt/wiki/Bolt-Core-Development-Workmap")
+		}
 		if len(cheatsheet.FindAllStringSubmatch(event.Message(), -1)) > 0 {
 			ircproj.Privmsg(event.Arguments[0], "A cheatsheet for bolt is available at https://cheatsheet.bolt.cm")
 		}
