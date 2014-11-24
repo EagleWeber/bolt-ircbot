@@ -29,6 +29,20 @@ func AddActionf(ircproj *irc.Connection, hash string, response string) error {
 	return nil
 }
 
+func AddActionSilentWorks(ircproj *irc.Connection, hash string, response string) error {
+	x := regexp.MustCompile(hash)
+	ircproj.AddCallback("PRIVMSG", func(event *irc.Event) {
+		matches := x.FindAllStringSubmatch(event.Message(), -1)
+		if len(matches) > 0 {
+		    if event.Nick != "silentworks" {
+		        ircproj.Actionf(event.Arguments[0], response, event.Nick)
+		    }
+		}
+	})
+
+	return nil
+}
+
 func AddPrivmsgRules(ircproj *irc.Connection) error {
 	x := regexp.MustCompile(`#rules`)
 	ircproj.AddCallback("PRIVMSG", func(event *irc.Event) {
