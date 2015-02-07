@@ -89,6 +89,7 @@ func AddPrivmsgDocs(ircproj *irc.Connection) error {
 	codequality := regexp.MustCompile(`#(quality|codequality)`)
 	credits := regexp.MustCompile(`#credits`)
 	issues := regexp.MustCompile(`#issue`)
+	manifesto := regexp.MustCompile(`#manifesto`)
 
 	ircproj.AddCallback("PRIVMSG", func(event *irc.Event) {
 		if len(workmap.FindAllStringSubmatch(event.Message(), -1)) > 0 {
@@ -184,7 +185,9 @@ func AddPrivmsgDocs(ircproj *irc.Connection) error {
 		if len(issues.FindAllStringSubmatch(event.Message(), -1)) > 0 {
 			ircproj.Privmsg(event.Arguments[0], "Bolt issue tracker available at https://github.com/bolt/bolt/issues")
 		}
-
+		if len(manifesto.FindAllStringSubmatch(event.Message(), -1)) > 0 {
+			ircproj.Privmsg(event.Arguments[0], "Bolt manifesto available at https://docs.bolt.cm/manifesto")
+		}
 	})
 
 	return nil
