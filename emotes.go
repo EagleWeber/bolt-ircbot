@@ -35,7 +35,7 @@ func AddActionSilentWorks(ircproj *irc.Connection, hash string, response string)
 		matches := x.FindAllStringSubmatch(event.Message(), -1)
 		if len(matches) > 0 {
 		    if event.Nick != "silentworks" {
-		        ircproj.Actionf(event.Arguments[0], response, event.Nick)
+		        ircproj.Action(event.Arguments[0], response)
 		    }
 		}
 	})
