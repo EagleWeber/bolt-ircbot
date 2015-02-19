@@ -96,7 +96,7 @@ func AddPrivmsgDocs(ircproj *irc.Connection) error {
 			ircproj.Privmsg(event.Arguments[0], "Core Development Workmap: https://github.com/bolt/bolt/wiki/Bolt-Core-Development-Workmap")
 		}
 		if len(cheatsheet.FindAllStringSubmatch(event.Message(), -1)) > 0 {
-			ircproj.Privmsg(event.Arguments[0], "A cheatsheet for bolt is available at https://cheatsheet.bolt.cm")
+			ircproj.Privmsg(event.Arguments[0], "A cheatsheet for Bolt is available at https://cheatsheet.bolt.cm")
 		}
 		if len(docs.FindAllStringSubmatch(event.Message(), -1)) > 0 {
 			ircproj.Privmsg(event.Arguments[0], "Bolt documentation is available at https://docs.bolt.cm")
@@ -105,7 +105,7 @@ func AddPrivmsgDocs(ircproj *irc.Connection) error {
 			ircproj.Privmsg(event.Arguments[0], "Bolt source code is available at https://github.com/bolt/bolt")
 		}
 		if len(install.FindAllStringSubmatch(event.Message(), -1)) > 0 {
-			ircproj.Privmsg(event.Arguments[0], "Full documentation on installing bolt is available at https://docs.bolt.cm/installation")
+			ircproj.Privmsg(event.Arguments[0], "Full documentation on installing Bolt is available at https://docs.bolt.cm/installation")
 		}
 		if len(routes.FindAllStringSubmatch(event.Message(), -1)) > 0 {
 			ircproj.Privmsg(event.Arguments[0], "Routes documentation is available at https://docs.bolt.cm/templates-routes")
@@ -156,7 +156,7 @@ func AddPrivmsgDocs(ircproj *irc.Connection) error {
 			ircproj.Privmsg(event.Arguments[0], "Extensions documentation is available at https://docs.bolt.cm/extensions")
 		}
 		if len(internals.FindAllStringSubmatch(event.Message(), -1)) > 0 {
-			ircproj.Privmsg(event.Arguments[0], "Documentation on bolts internals is available at https://docs.bolt.cm/internals")
+			ircproj.Privmsg(event.Arguments[0], "Documentation on Bolt's internals is available at https://docs.bolt.cm/internals")
 		}
 		if len(nut.FindAllStringSubmatch(event.Message(), -1)) > 0 {
 			ircproj.Privmsg(event.Arguments[0], "Documentation on Nut is available at https://docs.bolt.cm/nut")
@@ -168,19 +168,19 @@ func AddPrivmsgDocs(ircproj *irc.Connection) error {
 			ircproj.Privmsg(event.Arguments[0], "Information on maintenance mode is available at https://docs.bolt.cm/maintenancemode")
 		}
 		if len(roadmap.FindAllStringSubmatch(event.Message(), -1)) > 0 {
-			ircproj.Privmsg(event.Arguments[0], "A roadmap for bolt is available at https://docs.bolt.cm/roadmap")
+			ircproj.Privmsg(event.Arguments[0], "A roadmap for Bolt is available at https://docs.bolt.cm/roadmap")
 		}
 		if len(resources.FindAllStringSubmatch(event.Message(), -1)) > 0 {
-			ircproj.Privmsg(event.Arguments[0], "A list of bolt resources is available at https://docs.bolt.cm/resources")
+			ircproj.Privmsg(event.Arguments[0], "A list of Bolt resources is available at https://docs.bolt.cm/resources")
 		}
 		if len(about.FindAllStringSubmatch(event.Message(), -1)) > 0 {
-			ircproj.Privmsg(event.Arguments[0], "Read an introduction to bolt https://docs.bolt.cm/resources")
+			ircproj.Privmsg(event.Arguments[0], "Read an introduction to Bolt https://docs.bolt.cm/resources")
 		}
 		if len(codequality.FindAllStringSubmatch(event.Message(), -1)) > 0 {
-			ircproj.Privmsg(event.Arguments[0], "Code quality guidelines are available at https://docs.bolt.cm/code-quality")
+			ircproj.Privmsg(event.Arguments[0], "Bolt's Code Quality Guidelines are available at https://docs.bolt.cm/code-quality")
 		}
 		if len(credits.FindAllStringSubmatch(event.Message(), -1)) > 0 {
-			ircproj.Privmsg(event.Arguments[0], "Credits for code used in bolt are available at https://docs.bolt.cm/credits")
+			ircproj.Privmsg(event.Arguments[0], "Credits for code used in Bolt are available at https://docs.bolt.cm/credits")
 		}
 		if len(issues.FindAllStringSubmatch(event.Message(), -1)) > 0 {
 			ircproj.Privmsg(event.Arguments[0], "Bolt issue tracker available at https://github.com/bolt/bolt/issues")
