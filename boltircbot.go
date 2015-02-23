@@ -121,6 +121,10 @@ func main() {
 	ircproj.AddCallback("PRIVMSG", func(event *irc.Event) {
 		matches := r.FindAllStringSubmatch(event.Message(), -1)
 		for _, match := range matches {
+			// Don't start a bot war
+			if event.Nick == "[BoltGitHubBot]" {
+				continue
+			}
 			if len(match) < 2 {
 				continue
 			}
