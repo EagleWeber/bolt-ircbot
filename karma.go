@@ -192,7 +192,7 @@ func AddActionKarma(c *Config, ircproj *irc.Connection) error {
 				}
 
 				if element == "Chameleon" || element == "chameleon" {
-					ircproj.Privmsg(event.Arguments[0], "Karma Karma Karma Karma Karma Chameleon... You come and go... You come and go... Loving would be easy if your colours were like my dream... Red, gold and green... Red, gold and green")
+					ircproj.Privmsg(event.Arguments[0], "Karma Karma Karma Karma Karma Chameleon… You come and go… You come and go… Loving would be easy if your colours were like my dream… Red, gold and green… Red, gold and green")
 					continue
 				}
 
@@ -224,9 +224,9 @@ func AddActionKarma(c *Config, ircproj *irc.Connection) error {
 						log.Println(fmt.Sprintf("Ooopsy %s", err))
 					} else {
 						if karma == 69 {
-							ircproj.Privmsgf(event.Arguments[0], "%s got their first real six-string...", element)
-							ircproj.Privmsg(event.Arguments[0], "Bought it at the five-and-dime...")
-							ircproj.Privmsg(event.Arguments[0], "Played it 'til their fingers bled...")
+							ircproj.Privmsgf(event.Arguments[0], "%s got their first real six-string…", element)
+							ircproj.Privmsg(event.Arguments[0], "Bought it at the five-and-dime…")
+							ircproj.Privmsg(event.Arguments[0], "Played it 'til their fingers bled…")
 							ircproj.Privmsg(event.Arguments[0], "It was the summer of '69")
 							ircproj.Privmsg(event.Arguments[0], "#beer")
 						} else {

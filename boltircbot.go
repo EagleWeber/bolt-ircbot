@@ -188,7 +188,7 @@ func main() {
 	// Documentation for bolt
 	AddPrivmsgDocs(ircproj)
 
-	AddActionf(ircproj, `#(kitten|cat)`, "starts to meow at %v... *purr* *purr*")
+	AddActionf(ircproj, `#(kitten|cat)`, "starts to meow at %v… *purr* *purr*")
 	AddActionf(ircproj, `#dog`, "rolls over, and wants its tummy scratched by %v")
 	AddActionf(ircproj, `#champagne`, "opens a nice chilled bottle of Moët & Chandon for %v")
 	AddActionf(ircproj, `#beer`, "return $this->app['beer']->serve('everyone')->sendBillTo('%v');")
@@ -199,17 +199,17 @@ func main() {
 	AddActionf(ircproj, `#whisky`, "pours a nip of Glenavon Special for %v.")
 	AddActionf(ircproj, `#whiskey`, "takes a swig of Jameson, hands the bottle to %v, and sings - \"Whack fol de daddy-o, There's whiskey in the jar.\"")
 	AddActionf(ircproj, `#shiraz`, "wonders if %v has ever had a Heathcote Estate Shiraz?")
-	AddActionf(ircproj, `#water`, "pours water over %v...  That is what they wanted, right?")
-	AddActionf(ircproj, `#(PR|pr|Pr|pR)`, "gets the idea that Bopp should take care of %v's pull requests or kittens may cry...")
+	AddActionf(ircproj, `#water`, "pours water over %v…  That is what they wanted, right?")
+	AddActionf(ircproj, `#(PR|pr|Pr|pR)`, "gets the idea that Bopp should take care of %v's pull requests or kittens may cry…")
 	AddActionf(ircproj, `#vodka`, "opens a bottle of Billionaire Vodka for %v.  It's good to be the king after all!")
 	//AddActionf(ircproj, `bolt`, "calls capital_B_dangit() on %v's behalf")
 
 	AddAction(ircproj, `#popcorn`, "yells: POPCORN! GET YOUR POPCORN!")
 	AddAction(ircproj, `#pastebin`, "asks that http://pastebin.com/ be used for more than one-line messages. It makes life easier.")
 	AddAction(ircproj, `#(pony|mylittlepony)`, "says \"ZA̡͊͠͝LGΌ ISͮ̂҉̯͈͕̹̘̱ TO͇̹̺ͅƝ̴ȳ̳ TH̘Ë͖́̉ ͠P̯͍̭O̚​N̐Y̡ H̸̡̪̯ͨ͊̽̅̾̎Ȩ̬̩̾͛ͪ̈́̀́͘ ̶̧̨̱̹̭̯ͧ̾ͬC̷̙̲̝͖ͭ̏ͥͮ͟Oͮ͏̮̪̝͍M̲̖͊̒ͪͩͬ̚̚͜Ȇ̴̟̟͙̞ͩ͌͝S̨̥̫͎̭ͯ̿̔̀ͅ\"")
-	AddAction(ircproj, `#tequila`, "drinks one Tequila, two Tequilas, three Tequilas... floor!")
-	AddActionSilentWorks(ircproj, `(WP|wp|Wordpress|WordPress|wordpress)`, "notes that if code was poetry, WordPress would have been written in Go...  It's more like \"code is pooetry if you ask this bot\"")
-	AddAction(ircproj, `#nicotine`, "coughs and opens the windows...")
+	AddAction(ircproj, `#tequila`, "drinks one Tequila, two Tequilas, three Tequilas… floor!")
+	AddActionSilentWorks(ircproj, `(WP|wp|Wordpress|WordPress|wordpress)`, "notes that if code was poetry, WordPress would have been written in Go…  It's more like \"code is pooetry if you ask this bot\"")
+	AddAction(ircproj, `#nicotine`, "coughs and opens the windows…")
 
 	AddActionKarma(c, ircproj)
 

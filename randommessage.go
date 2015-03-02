@@ -16,7 +16,7 @@ func RandomMessage() string {
 	choices := []Choice{
 		{"Welcome back, %v. I missed you while you were gone!"},
 		{"%v! Where were you? I can't operate properly on my own!"},
-		{"%v, you better have some commits ready for me to digitally drool over..."},
+		{"%v, you better have some commits ready for me to digitally drool over…"},
 		{"Oh now you show up, %v! We need to talk!"},
 		{"Thank you for creating Bolt, %v. I wouldn't exist without it."},
 	}
