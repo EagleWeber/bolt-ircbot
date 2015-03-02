@@ -126,7 +126,7 @@ func AddPrivmsgDocs(ircproj *irc.Connection) error {
 			ircproj.Privmsg(event.Arguments[0], "Information on updates and updating is at https://docs.bolt.cm/updating")
 		}
 		if len(screenshots.FindAllStringSubmatch(event.Message(), -1)) > 0 {
-			ircproj.Privmsg(event.Arguments[0], "Screenshots of bolt are available at https://docs.bolt.cm/screenshots")
+			ircproj.Privmsg(event.Arguments[0], "Screenshots of Bolt are available at https://docs.bolt.cm/screenshots")
 		}
 		if len(taxonomies.FindAllStringSubmatch(event.Message(), -1)) > 0 {
 			ircproj.Privmsg(event.Arguments[0], "Taxonomies documentation is available at https://docs.bolt.cm/taxonomies")
@@ -162,7 +162,7 @@ func AddPrivmsgDocs(ircproj *irc.Connection) error {
 			ircproj.Privmsg(event.Arguments[0], "Documentation on Nut is available at https://docs.bolt.cm/nut")
 		}
 		if len(contributing.FindAllStringSubmatch(event.Message(), -1)) > 0 {
-			ircproj.Privmsg(event.Arguments[0], "Information on contributing to bolt is available at https://docs.bolt.cm/contributing")
+			ircproj.Privmsg(event.Arguments[0], "Information on contributing to Bolt is available at https://docs.bolt.cm/contributing")
 		}
 		if len(maintenance.FindAllStringSubmatch(event.Message(), -1)) > 0 {
 			ircproj.Privmsg(event.Arguments[0], "Information on maintenance mode is available at https://docs.bolt.cm/maintenancemode")
