@@ -192,14 +192,14 @@ func AddActionKarma(c *Config, ircproj *irc.Connection) error {
 				}
 
 				if element == "Chameleon" || element == "chameleon" {
-					ircproj.Privmsg(event.Arguments[0], "Karma Karma Karma Karma Karma Chameleon... You come and go... You come and go... Loving would be easy if your colors were like my dream... Red, gold and green... Red, gold and green")
+					ircproj.Privmsg(event.Arguments[0], "Karma Karma Karma Karma Karma Chameleon... You come and go... You come and go... Loving would be easy if your colours were like my dream... Red, gold and green... Red, gold and green")
 					continue
 				}
 
-				//				if element == "tdammers" {
-				//				    ircproj.Privmsg(event.Arguments[0], "tdammers is a deity and as such is above awards of karama, his is already beyond that of you mortals!")
-				//					continue
-				//				}
+				//if element == "tdammers" {
+				//    ircproj.Privmsg(event.Arguments[0], "tdammers is a deity and as such is above awards of karama, his is already beyond that of you mortals!")
+				//	continue
+				//}
 
 				if inArray(element, ChannelUsers) == false {
 					ircproj.Privmsgf(event.Arguments[0], "Sorry but karma can only be added for channel members, %v isn't here and they lose out!", element)
