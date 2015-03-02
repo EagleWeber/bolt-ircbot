@@ -3,7 +3,16 @@ package main
 import (
 	"github.com/thoj/go-ircevent"
 	"regexp"
+	"time"
 )
+
+var LastWpNag = time.Now()
+
+func WpNagTimeTrack() time.Duration {
+	elapsed := time.Since(LastWpNag)
+
+	return elapsed
+}
 
 func AddAction(ircproj *irc.Connection, hash string, response string) error {
 	x := regexp.MustCompile(hash)
@@ -32,10 +41,19 @@ func AddActionf(ircproj *irc.Connection, hash string, response string) error {
 func AddActionSilentWorks(ircproj *irc.Connection, hash string, response string) error {
 	x := regexp.MustCompile(hash)
 	ircproj.AddCallback("PRIVMSG", func(event *irc.Event) {
+		elapsed := WpNagTimeTrack()
+
+		if elapsed < 30 * time.Second {
+			return
+		}
+
 		matches := x.FindAllStringSubmatch(event.Message(), -1)
 		if len(matches) > 0 {
 			if event.Nick != "silentworks" {
 				ircproj.Action(event.Arguments[0], response)
+
+				// Track when we last did this
+				LastWpNag = time.Now()
 			}
 		}
 	})
