@@ -165,7 +165,7 @@ func main() {
 			}
 		}
 	})
-	
+
 	// Help
 	//AddHelp(ircproj)
 

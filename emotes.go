@@ -34,9 +34,9 @@ func AddActionSilentWorks(ircproj *irc.Connection, hash string, response string)
 	ircproj.AddCallback("PRIVMSG", func(event *irc.Event) {
 		matches := x.FindAllStringSubmatch(event.Message(), -1)
 		if len(matches) > 0 {
-		    if event.Nick != "silentworks" {
-		        ircproj.Action(event.Arguments[0], response)
-		    }
+			if event.Nick != "silentworks" {
+				ircproj.Action(event.Arguments[0], response)
+			}
 		}
 	})
 
@@ -58,7 +58,7 @@ func AddPrivmsgRules(ircproj *irc.Connection) error {
 }
 
 func AddPrivmsgDocs(ircproj *irc.Connection) error {
-    workmap := regexp.MustCompile(`#workmap`)
+	workmap := regexp.MustCompile(`#workmap`)
 	cheatsheet := regexp.MustCompile(`#cheatsheet`)
 	docs := regexp.MustCompile(`#docs`)
 	github := regexp.MustCompile(`#github`)
