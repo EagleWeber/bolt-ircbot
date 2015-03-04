@@ -171,7 +171,7 @@ func AddPrivmsgDocs(ircproj *irc.Connection) error {
 			ircproj.Privmsg(event.Arguments[0], "Template Tags information is available at https://docs.bolt.cm/templatetags")
 		}
 		if len(extensions.FindAllStringSubmatch(event.Message(), -1)) > 0 {
-			ircproj.Privmsg(event.Arguments[0], "Extensions documentation is available at https://docs.bolt.cm/extensions")
+			ircproj.Privmsg(event.Arguments[0], "Extensions documentation is available at https://docs.bolt.cm/extensions/introduction")
 		}
 		if len(internals.FindAllStringSubmatch(event.Message(), -1)) > 0 {
 			ircproj.Privmsg(event.Arguments[0], "Documentation on Bolt's internals is available at https://docs.bolt.cm/internals")
