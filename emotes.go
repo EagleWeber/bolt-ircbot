@@ -108,7 +108,6 @@ func AddPrivmsgDocs(ircproj *irc.Connection) error {
 	credits := regexp.MustCompile(`#credits`)
 	issues := regexp.MustCompile(`#issue`)
 	manifesto := regexp.MustCompile(`#manifesto`)
-	roadmap := regexp.MustCompile(`#roadmap`)
 
 	ircproj.AddCallback("PRIVMSG", func(event *irc.Event) {
 		if len(workmap.FindAllStringSubmatch(event.Message(), -1)) > 0 {
@@ -185,9 +184,6 @@ func AddPrivmsgDocs(ircproj *irc.Connection) error {
 		}
 		if len(maintenance.FindAllStringSubmatch(event.Message(), -1)) > 0 {
 			ircproj.Privmsg(event.Arguments[0], "Information on maintenance mode is available at https://docs.bolt.cm/maintenancemode")
-		}
-		if len(roadmap.FindAllStringSubmatch(event.Message(), -1)) > 0 {
-			ircproj.Privmsg(event.Arguments[0], "A roadmap for Bolt is available at https://docs.bolt.cm/roadmap")
 		}
 		if len(resources.FindAllStringSubmatch(event.Message(), -1)) > 0 {
 			ircproj.Privmsg(event.Arguments[0], "A list of Bolt resources is available at https://docs.bolt.cm/resources")
