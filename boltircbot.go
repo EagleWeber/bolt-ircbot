@@ -206,10 +206,11 @@ func main() {
 
 	AddAction(ircproj, `#popcorn`, "yells: POPCORN! GET YOUR POPCORN!")
 	AddAction(ircproj, `#pastebin`, "asks that http://pastebin.com/ be used for more than one-line messages. It makes life easier.")
-	AddAction(ircproj, `#(pony|mylittlepony)`, "says \"ZA̡͊͠͝LGΌ ISͮ̂҉̯͈͕̹̘̱ TO͇̹̺ͅƝ̴ȳ̳ TH̘Ë͖́̉ ͠P̯͍̭O̚​N̐Y̡ H̸̡̪̯ͨ͊̽̅̾̎Ȩ̬̩̾͛ͪ̈́̀́͘ ̶̧̨̱̹̭̯ͧ̾ͬC̷̙̲̝͖ͭ̏ͥͮ͟Oͮ͏̮̪̝͍M̲̖͊̒ͪͩͬ̚̚͜Ȇ̴̟̟͙̞ͩ͌͝S̨̥̫͎̭ͯ̿̔̀ͅ\"")
+	AddAction(ircproj, `#(pony|mylittlepony)`, "says \"ZA̡͊͠͝LGΌ ISͮ̂҉̯͈͕̹̘̱ TO͇̹̺ͅƝ̴ȳ̳ TH̘Ë͖́̉ ͠P̯͍̭O̚​N̐Y̡ H̸̡̪̯ͨ͊̽̅̾̎Ȩ̬̩̾͛ͪ̈́̀́͘ ̶̧̨̱̹̭̯ͧ̾ͬC̷̙̲̝͖ͭ̏ͥͮ͟Oͮ͏̮̪̝͍M̲̖͊̒ͪͩͬ̚̚͜Ȇ̴̟̟͙̞ͩ͌͝S̨̥̫͎̭ͯ̿̔̀ͅ\"")
 	AddAction(ircproj, `#tequila`, "drinks one Tequila, two Tequilas, three Tequilas… floor!")
 	AddActionSilentWorks(ircproj, `(WP|wp|Wordpress|WordPress|wordpress)`, "notes that if code was poetry, WordPress would have been written in Go…  It's more like \"code is pooetry if you ask this bot\"")
 	AddAction(ircproj, `#nicotine`, "coughs and opens the windows…")
+	AddAction(ircproj, `OCD`, "s/OCD/CDO/ …must be in alphabetical order…")
 
 	AddActionKarma(c, ircproj)
 
