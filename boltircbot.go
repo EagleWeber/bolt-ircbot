@@ -213,6 +213,8 @@ func main() {
 	AddAction(ircproj, `OCD`, "s/OCD/CDO/ …must be in alphabetical order…")
 
 	AddActionKarma(c, ircproj)
+	
+	AddTobias(ircproj)
 
 	ircproj.Loop()
 }
