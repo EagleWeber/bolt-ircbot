@@ -214,7 +214,7 @@ func main() {
 
 	AddActionKarma(c, ircproj)
 	
-	AddTobias(ircproj)
+	// AddTobias(ircproj)
 
 	ircproj.Loop()
 }
