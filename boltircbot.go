@@ -191,7 +191,7 @@ func main() {
 	AddActionf(ircproj, `#(kitten|cat)`, "starts to meow at %v… *purr* *purr*")
 	AddActionf(ircproj, `#dog`, "rolls over, and wants its tummy scratched by %v")
 	AddActionf(ircproj, `#champagne`, "opens a nice chilled bottle of Moët & Chandon for %v")
-	AddActionf(ircproj, `#beer`, "return $this->app['beer']->serve('everyone')->sendBillTo('%v');")
+	AddActionf(ircproj, `#beer`, "$this->app['bartender']->setDrink('beer')->setTab('%v')->serveAll();")
 	AddActionf(ircproj, `#coffee`, "turns on the espresso machine for %v")
 	AddActionf(ircproj, `#hotchocolate`, "believes in miracles, %v, you sexy thing!")
 	AddActionf(ircproj, `#tea`, "has boiled some water, and begins to brew %v a nice cup of tea.")
