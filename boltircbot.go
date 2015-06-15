@@ -212,11 +212,13 @@ func main() {
 	AddActionSilentWorks(ircproj, `(WP|wp|Wordpress|WordPress|wordpress)`, "notes that if code was poetry, WordPress would have been written in Go…  It's more like \"code is pooetry if you ask this bot\"")
 	AddAction(ircproj, `#nicotine`, "coughs and opens the windows…")
 	AddAction(ircproj, `OCD`, "s/OCD/CDO/ …must be in alphabetical order…")
+	AddAction(ircproj, `#koala`, "passes some eucalyptus leaves to %v.")
+	AddAction(ircproj, `#ninja`, "visits http://%v.is-a-sneaky.ninja/")
 
 	AddAction(ircproj, `#(http418|http 418)`, "418 I'm a teapot")
-    
+
 	AddActionKarma(c, ircproj)
-	
+
 	// AddTobias(ircproj)
 
 	ircproj.Loop()
