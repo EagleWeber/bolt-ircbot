@@ -206,6 +206,7 @@ func main() {
 	//AddActionf(ircproj, `bolt`, "calls capital_B_dangit() on %v's behalf")
 	AddActionf(ircproj, `#koala`, "passes some eucalyptus leaves to %v.")
 	AddActionf(ircproj, `#ninja`, "visits http://%v.is-a-sneaky.ninja/")
+	AddActionf(ircproj, `#upstream`, "Maybe somebody screwed up somewhere... Perhaps %v knows what happened?")
 
 	AddAction(ircproj, `#popcorn`, "yells: POPCORN! GET YOUR POPCORN!")
 	AddAction(ircproj, `#pastebin`, "asks that http://pastebin.com/ be used for more than one-line messages. It makes life easier.")
