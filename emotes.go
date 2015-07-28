@@ -108,7 +108,7 @@ func AddPrivmsgDocs(ircproj *irc.Connection) error {
 	credits := regexp.MustCompile(`#credits`)
 	issues := regexp.MustCompile(`#issue`)
 	manifesto := regexp.MustCompile(`#manifesto`)
-    htaccess := regexp.MustCompile(`#(rewrite|htaccess|apache)`)
+	htaccess := regexp.MustCompile(`#(rewrite|htaccess|apache)`)
 
 	ircproj.AddCallback("PRIVMSG", func(event *irc.Event) {
 		if len(workmap.FindAllStringSubmatch(event.Message(), -1)) > 0 {
@@ -208,7 +208,7 @@ func AddPrivmsgDocs(ircproj *irc.Connection) error {
 			ircproj.Privmsg(event.Arguments[0], "Bolt 2.x Roadmap available at https://github.com/bolt/bolt/wiki/Bolt-2.x-Roadmap")
 		}
 		if len(htaccess.FindAllStringSubmatch(event.Message(), -1)) > 0 {
-			ircproj.Privmsg(event.Arguments[0], "Having apache rewrite issues? Have a look at https://docs.bolt.cm/howto/making-sure-htaccess-works")
+			ircproj.Privmsg(event.Arguments[0], "Having Apache rewrite issues? Have a look at https://docs.bolt.cm/howto/making-sure-htaccess-works")
 		}
 	})
 
