@@ -3,7 +3,7 @@ package main
 import (
 	"math/rand"
 	"time"
-    "github.com/thoj/go-ircevent"
+	"github.com/thoj/go-ircevent"
 	"regexp"
 	"strings"
 )
