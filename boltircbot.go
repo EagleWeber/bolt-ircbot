@@ -225,6 +225,8 @@ func main() {
 	AddAction(ircproj, `#(http418|http 418)`, "418 I'm a teapot")
 
 	AddActionKarma(c, ircproj)
+    
+	AddActionInsult(c, ircproj)
 
 	// AddTobias(ircproj)
 
