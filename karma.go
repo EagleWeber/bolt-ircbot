@@ -231,7 +231,7 @@ func AddActionKarma(c *Config, ircproj *irc.Connection) error {
 							ircproj.Privmsg(event.Arguments[0], "#beer")
 						} else if karma == 155 {
 							ircproj.Privmsgf(event.Arguments[0], "BoltKarma for %s is now %d", element, karma)
-                            ircproj.Privmsg(event.Arguments[0], "Well that was anticlimactic, wasn't it, slick0?")
+							ircproj.Privmsg(event.Arguments[0], "Well that was anticlimactic, wasn't it, slick0?")
 						} else {
 							ircproj.Privmsgf(event.Arguments[0], "BoltKarma for %s is now %d", element, karma)
 						}
