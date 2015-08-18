@@ -17,6 +17,8 @@ import (
 	"strings"
 	"time"
 	"math"
+	"unicode"
+	"strconv"
 )
 
 var ChannelUsers []string
@@ -118,7 +120,7 @@ func main() {
 		WriteLog(c, logs[channel], event.Nick, event.Message())
 	})
 
-	r := regexp.MustCompile(`#(\d+)`)
+	r := regexp.MustCompile(`#(-?\d+)`)
 	ircproj.AddCallback("PRIVMSG", func(event *irc.Event) {
 		matches := r.FindAllStringSubmatch(event.Message(), -1)
 		for _, match := range matches {
@@ -129,7 +131,10 @@ func main() {
 			if len(match) < 2 {
 				continue
 			}
-			u, err := url.Parse(fmt.Sprintf("https://api.github.com/repos/%s/%s/issues/%s", c.Github.Owner, c.Github.Repos, match[1]))
+			matchNormalized, err := strconv.ParseFloat(match[1], 64)
+			matchNegative := math.Signbit(matchNormalized)
+			gitMatch := strconv.FormatFloat(math.Abs(matchNormalized), 'f', -1, 64)
+			u, err := url.Parse(fmt.Sprintf("https://api.github.com/repos/%s/%s/issues/%s", c.Github.Owner, c.Github.Repos, gitMatch))
 			if err != nil {
 				log.Println(err)
 				continue
@@ -152,8 +157,17 @@ func main() {
 				log.Println(err)
 				continue
 			}
-
-			if m["number"].(float64) == 1 {
+			if matchNegative {
+				if matchNormalized == -1 {
+					ircproj.Noticef(event.Arguments[0], "#%v Add locale ´Rövarspråket´ as default, since it is the new Lingua Franca of the internet. https://github.com/bolt/bolt/issues/1", m["number"].(float64))
+				} else if matchNormalized == -1555 {
+					ircproj.Noticef(event.Arguments[0], "Do not tempt the gods, %v.", event.Nick)
+				} else if math.Mod(m["number"].(float64), 1555) == 0 {
+					ircproj.Noticef(event.Arguments[0], "#%v They don't think it be like it is but it do. https://github.com/bolt/bolt/issues/%v", m["number"].(float64), m["number"].(float64))
+				} else {
+					ircproj.Noticef(event.Arguments[0], "#%v %v %v", m["number"].(float64), swedishEncode(m["title"].(string)), m["html_url"].(string))
+				}
+			} else if m["number"].(float64) == 1 {
 				// I am a bot, I can have my own rule #1
 				ircproj.Noticef(event.Arguments[0], "#1 Port Bolt to Go to keep %v happy https://github.com/bolt/bolt/issues/1", c.Irc.Nickname)
 				time.Sleep(5 * time.Second)
@@ -225,10 +239,28 @@ func main() {
 	AddAction(ircproj, `#(http418|http 418)`, "418 I'm a teapot")
 
 	AddActionKarma(c, ircproj)
-    
+
 	AddActionInsult(c, ircproj)
 
 	// AddTobias(ircproj)
 
 	ircproj.Loop()
+}
+
+
+const Consonants = "BCDGFHJKLMNPQRSTVWXZbcdfghjklmnpqrstvwxz"
+
+func swedishEncode(inputString string) string {
+	var encodedString []rune
+
+	for _, letter := range inputString {
+		encodedString = append(encodedString, letter)
+
+		if strings.ContainsRune(Consonants, letter) {
+			encodedString = append(encodedString, 'o')
+			encodedString = append(encodedString, unicode.ToLower(letter))
+		}
+	}
+
+	return string(encodedString)
 }
