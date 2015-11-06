@@ -243,6 +243,7 @@ func main() {
 	//Todo: allow "koala" to be lowercase without conflicting with the #koala directive (problem with golang not allowing regex lookahead)
 	AddAction(ircproj, `#(KoalaBugs|Koalabugs)`, "thinks he saw something small and furry scurry away from github. Somebody better check for #KoalaBugs...")
 	AddAction(ircproj, `#(http418|http 418)`, "418 I'm a teapot")
+	AddActionf(ircproj, `#(friday|Friday)`, "assumes that %v will spend all weekend fixing bugs in bolt, right?")
 
 	AddActionKarma(c, ircproj)
 
