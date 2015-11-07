@@ -13,12 +13,14 @@ import (
 	"net/http"
 	"net/url"
 	"os"
+	"os/signal"
 	"regexp"
+	"strconv"
 	"strings"
+	"syscall"
 	"time"
 	"math"
 	"unicode"
-	"strconv"
 )
 
 var ChannelUsers []string
@@ -80,6 +82,7 @@ func (c *Config) Load(filename string) error {
 }
 
 func main() {
+	// Load config
 	flag.Parse()
 	c := &Config{}
 	if err := c.Load(*config); err != nil {
@@ -95,11 +98,23 @@ func main() {
 		ircproj.TLSConfig = &tls.Config{InsecureSkipVerify: true}
 	}
 	ircproj.Password = c.Irc.Password
-
+	ircproj.QuitMessage = "Drop bear spotted… I'm out of here!"
+	
 	err := ircproj.Connect(net.JoinHostPort(c.Irc.Host, c.Irc.Port))
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	// Create a channel to receive signal notifications 
+	sigs := make(chan os.Signal, 1)
+	// Register the channel to receive notifications SIGINT & SIGTERM signals.
+	signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
+	go func() {
+		sig := <-sigs
+		ircproj.Quit()
+		fmt.Println()
+		fmt.Println(fmt.Sprintf("Received %v signal", sig))
+	}()
 
 	ircproj.AddCallback("001", func(event *irc.Event) {
 		for _, channel := range c.Irc.Channels {
