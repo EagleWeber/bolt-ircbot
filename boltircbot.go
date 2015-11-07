@@ -191,7 +191,7 @@ func main() {
 				// Props to Adrian Guenter
 				ircproj.Actionf(event.Arguments[0], "warns %v that #1555 nearly caused the end of the known universe and should never be mentioned again", event.Nick)
 			} else {
-				ircproj.Noticef(event.Arguments[0], "#%v %v %v", m["number"].(float64), m["title"].(string), m["html_url"].(string))
+				ircproj.Noticef(event.Arguments[0], "#%v [%v] %v %v", m["number"].(float64), m["state"].(string), m["title"].(string), m["html_url"].(string))
 
 				if math.Mod(m["number"].(float64), 1555) == 0 {
 					time.Sleep(2 * time.Second)
