@@ -236,14 +236,14 @@ func main() {
 	AddAction(ircproj, `#nicotine`, "coughs and opens the windows…")
 	AddAction(ircproj, `OCD`, "s/OCD/CDO/ …must be in alphabetical order…")
 
-	AddAction(ircproj, `#(BPFL|bpfl)`, "exclaims loudly: 'All bow for our Benevolent Princess for Life, the Monarch of Australia, Strangler of dropbears and catcher of koalas: gawainlynch!'")
+	AddAction(ircproj, `#(BPFL|bpfl)`, "exclaims loudly: 'All bow for our Benevolent Princess for Life, the Monarch of Australia, strangler of drop bears and catcher of koalas: gawainlynch!'")
 	// Someone might want to change this to something LOTR themed to fit better with Bopps interests
 	AddAction(ircproj, `#(BDFL|bdfl|BoltBorn|Boltborn|boltborn)`, "starts to sing: 'Boltborn, Boltborn, by his honor is sworn, to keep featurebloat forever at bay! And the fiercest foes rout when they hear our BDFL's shout, Boltborn, for your blessing we pray!'")
 
 	//Todo: allow "koala" to be lowercase without conflicting with the #koala directive (problem with golang not allowing regex lookahead)
 	AddAction(ircproj, `#(KoalaBugs|Koalabugs)`, "thinks he saw something small and furry scurry away from github. Somebody better check for #KoalaBugs...")
 	AddAction(ircproj, `#(http418|http 418)`, "418 I'm a teapot")
-	AddActionf(ircproj, `#(friday|Friday)`, "assumes that %v will spend all weekend fixing bugs in bolt, right?")
+	AddActionf(ircproj, `#(friday|Friday)`, "assumes that %v will spend all weekend fixing bugs in Bolt, right?")
 
 	AddActionKarma(c, ircproj)
 
@@ -271,3 +271,4 @@ func swedishEncode(inputString string) string {
 
 	return string(encodedString)
 }
+
