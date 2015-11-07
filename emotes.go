@@ -43,7 +43,7 @@ func AddActionSilentWorks(ircproj *irc.Connection, hash string, response string)
 	ircproj.AddCallback("PRIVMSG", func(event *irc.Event) {
 		elapsed := WpNagTimeTrack()
 
-		if elapsed < 30 * time.Second {
+		if elapsed < 300 * time.Second {
 			return
 		}
 
