@@ -254,6 +254,7 @@ func main() {
 	AddActionSilentWorks(ircproj, `(WP|wp|Wordpress|WordPress|wordpress)`, "notes that if code was poetry, WordPress would have been written in Go…  It's more like \"code is pooetry if you ask this bot\"")
 	AddAction(ircproj, `#nicotine`, "coughs and opens the windows…")
 	AddAction(ircproj, `OCD`, "s/OCD/CDO/ …must be in alphabetical order…")
+	AddActionf(ircproj, `#git`, "says you have three choices: 1. man git, 2. nicely ask gawainlynch or 3. do it the xkcd way: https://xkcd.com/1597/")
 
 	AddAction(ircproj, `#(BPFL|bpfl)`, "exclaims loudly: 'All bow for our Benevolent Princess for Life, the Monarch of Australia, strangler of drop bears and catcher of koalas: gawainlynch!'")
 	// Someone might want to change this to something LOTR themed to fit better with Bopps interests
