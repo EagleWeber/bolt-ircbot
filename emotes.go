@@ -109,6 +109,7 @@ func AddPrivmsgDocs(ircproj *irc.Connection) error {
 	issues := regexp.MustCompile(`#issue`)
 	manifesto := regexp.MustCompile(`#manifesto`)
 	htaccess := regexp.MustCompile(`#(rewrite|htaccess|apache)`)
+	htaccess_override := regexp.MustCompile(`\/users\/edit\/ was not found on this server`)
 
 	ircproj.AddCallback("PRIVMSG", func(event *irc.Event) {
 		if len(workmap.FindAllStringSubmatch(event.Message(), -1)) > 0 {
@@ -207,7 +208,7 @@ func AddPrivmsgDocs(ircproj *irc.Connection) error {
 		if len(roadmap.FindAllStringSubmatch(event.Message(), -1)) > 0 {
 			ircproj.Privmsg(event.Arguments[0], "Bolt 2.x Roadmap available at https://github.com/bolt/bolt/wiki/Bolt-2.x-Roadmap")
 		}
-		if len(htaccess.FindAllStringSubmatch(event.Message(), -1)) > 0 {
+		if len(htaccess.FindAllStringSubmatch(event.Message(), -1)) > 0 || len(htaccess_override.FindAllStringSubmatch(event.Message(), -1)) > 0 {
 			ircproj.Privmsg(event.Arguments[0], "Having Apache rewrite issues? Have a look at https://docs.bolt.cm/howto/making-sure-htaccess-works")
 		}
 	})
