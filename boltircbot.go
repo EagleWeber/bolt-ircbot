@@ -265,6 +265,9 @@ func main() {
 	AddAction(ircproj, `#(http418|http 418)`, "418 I'm a teapot")
 	AddActionf(ircproj, `#(friday|Friday)`, "assumes that %v will spend all weekend fixing bugs in Bolt, right?")
 	AddActionf(ircproj, `#soup`, "pours %v a nice warm bowl of soup")
+	AddAction(ircproj, `#food`, "Mmmm... Leaves... https://koala.kx.nu/eating.gif")
+	AddAction(ircproj, `#fire`, "Kill it with fire. https://koala.kx.nu/fire.gif")
+	AddAction(ircproj, `#teamwork`, "Woo, teamwork! https://koala.kx.nu/teamwork.gif")
 
 	AddActionKarma(c, ircproj)
 
