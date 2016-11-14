@@ -94,6 +94,7 @@ func AddPrivmsgDocs(ircproj *irc.Connection) error {
 	maintenance := regexp.MustCompile(`#maintenance`)
 	manifesto := regexp.MustCompile(`#manifesto`)
 	menus := regexp.MustCompile(`#menu`)
+	nest := regexp.MustCompile(`#nest`)
 	nut := regexp.MustCompile(`#nut`)
 	paging := regexp.MustCompile(`#(page|paging)`)
 	permissions := regexp.MustCompile(`#permissions`)
@@ -163,6 +164,9 @@ func AddPrivmsgDocs(ircproj *irc.Connection) error {
 		}
 		if len(menus.FindAllStringSubmatch(event.Message(), -1)) > 0 {
 			ircproj.Privmsg(event.Arguments[0], "Menus documentation is available at https://docs.bolt.cm/configuration/menus")
+		}
+		if len(nest.FindAllStringSubmatch(event.Message(), -1)) > 0 {
+			ircproj.Privmsg(event.Arguments[0], "Maximum function nesting level of '100' reached? Set xdebug.max_nesting_level=1000 in your php.ini file. For more information see https://adayinthelifeof.nl/2015/11/17/symfony-xdebug-and-maximum-nesting-level-issues/")
 		}
 		if len(nut.FindAllStringSubmatch(event.Message(), -1)) > 0 {
 			ircproj.Privmsg(event.Arguments[0], "Documentation on Nut is available at https://docs.bolt.cm/other/nut")
