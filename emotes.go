@@ -76,145 +76,145 @@ func AddPrivmsgRules(ircproj *irc.Connection) error {
 }
 
 func AddPrivmsgDocs(ircproj *irc.Connection) error {
-	workmap := regexp.MustCompile(`#workmap`)
+	about := regexp.MustCompile(`#(about|introduction)`)
 	cheatsheet := regexp.MustCompile(`#cheatsheet`)
-	docs := regexp.MustCompile(`#docs`)
-	github := regexp.MustCompile(`#github`)
-	install := regexp.MustCompile(`#install`)
-	routes := regexp.MustCompile(`#(routes|routing)`)
+	codequality := regexp.MustCompile(`#(quality|codequality)`)
 	contenttypes := regexp.MustCompile(`#contenttype`)
+	contributing := regexp.MustCompile(`#(contribute|contributing)`)
+	credits := regexp.MustCompile(`#credits`)
+	docs := regexp.MustCompile(`#docs`)
 	extend := regexp.MustCompile(`#(extend|themes)`)
 	extensions := regexp.MustCompile(`#extensions`)
-	permissions := regexp.MustCompile(`#permissions`)
-	requirements := regexp.MustCompile(`#requirements`)
-	updating := regexp.MustCompile(`#(updates|updating)`)
-	screenshots := regexp.MustCompile(`#screenshot`)
-	taxonomies := regexp.MustCompile(`#(taxonomy|taxonomies)`)
-	menus := regexp.MustCompile(`#menu`)
-	relationships := regexp.MustCompile(`#relationship`)
-	templates := regexp.MustCompile(`#template`)
-	records := regexp.MustCompile(`#record`)
-	paging := regexp.MustCompile(`#(page|paging)`)
-	search := regexp.MustCompile(`#search`)
-	temptags := regexp.MustCompile(`#(tags|templatetags)`)
-	internals := regexp.MustCompile(`#internal`)
-	nut := regexp.MustCompile(`#nut`)
-	contributing := regexp.MustCompile(`#(contribute|contributing)`)
-	maintenance := regexp.MustCompile(`#maintenance`)
-	roadmap := regexp.MustCompile(`#roadmap`)
-	resources := regexp.MustCompile(`#resources`)
-	about := regexp.MustCompile(`#(about|introduction)`)
-	codequality := regexp.MustCompile(`#(quality|codequality)`)
-	credits := regexp.MustCompile(`#credits`)
-	issues := regexp.MustCompile(`#issue`)
-	manifesto := regexp.MustCompile(`#manifesto`)
-	webroot := regexp.MustCompile(`#webroot`)
-	htaccess := regexp.MustCompile(`#(rewrite|htaccess|apache)`)
+	github := regexp.MustCompile(`#github`)
 	htaccess_override := regexp.MustCompile(`\/users\/edit\/ was not found on this server`)
+	htaccess := regexp.MustCompile(`#(rewrite|htaccess|apache)`)
+	install := regexp.MustCompile(`#install`)
+	internals := regexp.MustCompile(`#internal`)
+	issues := regexp.MustCompile(`#issue`)
+	maintenance := regexp.MustCompile(`#maintenance`)
+	manifesto := regexp.MustCompile(`#manifesto`)
+	menus := regexp.MustCompile(`#menu`)
+	nut := regexp.MustCompile(`#nut`)
+	paging := regexp.MustCompile(`#(page|paging)`)
+	permissions := regexp.MustCompile(`#permissions`)
+	records := regexp.MustCompile(`#record`)
+	relationships := regexp.MustCompile(`#relationship`)
+	requirements := regexp.MustCompile(`#requirements`)
+	resources := regexp.MustCompile(`#resources`)
+	roadmap := regexp.MustCompile(`#roadmap`)
+	routes := regexp.MustCompile(`#(routes|routing)`)
+	screenshots := regexp.MustCompile(`#screenshot`)
+	search := regexp.MustCompile(`#search`)
+	taxonomies := regexp.MustCompile(`#(taxonomy|taxonomies)`)
+	templates := regexp.MustCompile(`#template`)
+	temptags := regexp.MustCompile(`#(tags|templatetags)`)
+	updating := regexp.MustCompile(`#(updates|updating)`)
+	webroot := regexp.MustCompile(`#webroot`)
+	workmap := regexp.MustCompile(`#workmap`)
 
 	ircproj.AddCallback("PRIVMSG", func(event *irc.Event) {
-		if len(workmap.FindAllStringSubmatch(event.Message(), -1)) > 0 {
-			ircproj.Privmsg(event.Arguments[0], "Core Development Workmap: https://github.com/bolt/bolt/wiki/Bolt-Core-Development-Workmap")
+		if len(about.FindAllStringSubmatch(event.Message(), -1)) > 0 {
+			ircproj.Privmsg(event.Arguments[0], "Read an introduction to Bolt https://docs.bolt.cm/getting-started/about")
 		}
 		if len(cheatsheet.FindAllStringSubmatch(event.Message(), -1)) > 0 {
 			ircproj.Privmsg(event.Arguments[0], "A cheatsheet for Bolt is available at https://docs.bolt.cm/cheatsheet")
 		}
-		if len(docs.FindAllStringSubmatch(event.Message(), -1)) > 0 {
-			ircproj.Privmsg(event.Arguments[0], "Bolt documentation is available at https://docs.bolt.cm")
-		}
-		if len(github.FindAllStringSubmatch(event.Message(), -1)) > 0 {
-			ircproj.Privmsg(event.Arguments[0], "Bolt source code is available at https://github.com/bolt/bolt")
-		}
-		if len(install.FindAllStringSubmatch(event.Message(), -1)) > 0 {
-			ircproj.Privmsg(event.Arguments[0], "Full documentation on installing Bolt is available at https://docs.bolt.cm/installation/installation")
-		}
-		if len(routes.FindAllStringSubmatch(event.Message(), -1)) > 0 {
-			ircproj.Privmsg(event.Arguments[0], "Routes documentation is available at https://docs.bolt.cm/templating/templates-routes")
+		if len(codequality.FindAllStringSubmatch(event.Message(), -1)) > 0 {
+			ircproj.Privmsg(event.Arguments[0], "Bolt's Code Quality Guidelines are available at https://docs.bolt.cm/other/code-quality")
 		}
 		if len(contenttypes.FindAllStringSubmatch(event.Message(), -1)) > 0 {
 			ircproj.Privmsg(event.Arguments[0], "ContentTypes documentation is available at https://docs.bolt.cm/contenttypes")
 		}
-		if len(extend.FindAllStringSubmatch(event.Message(), -1)) > 0 {
-			ircproj.Privmsg(event.Arguments[0], "Extensions and themes are available at https://extensions.bolt.cm")
-		}
-		if len(permissions.FindAllStringSubmatch(event.Message(), -1)) > 0 {
-			ircproj.Privmsg(event.Arguments[0], "Permissions documentation is available at https://docs.bolt.cm/configuration/permissions")
-		}
-		if len(requirements.FindAllStringSubmatch(event.Message(), -1)) > 0 {
-			ircproj.Privmsg(event.Arguments[0], "Bolt requirements are listed at https://docs.bolt.cm/getting-started/requirements")
-		}
-		if len(updating.FindAllStringSubmatch(event.Message(), -1)) > 0 {
-			ircproj.Privmsg(event.Arguments[0], "Information on updates and updating is at https://docs.bolt.cm/upgrading/updating")
-		}
-		if len(screenshots.FindAllStringSubmatch(event.Message(), -1)) > 0 {
-			ircproj.Privmsg(event.Arguments[0], "Screenshots of Bolt are available at https://docs.bolt.cm/getting-started/screenshots")
-		}
-		if len(taxonomies.FindAllStringSubmatch(event.Message(), -1)) > 0 {
-			ircproj.Privmsg(event.Arguments[0], "Taxonomies documentation is available at https://docs.bolt.cm/contenttypes/taxonomies")
-		}
-		if len(menus.FindAllStringSubmatch(event.Message(), -1)) > 0 {
-			ircproj.Privmsg(event.Arguments[0], "Menus documentation is available at https://docs.bolt.cm/configuration/menus")
-		}
-		if len(relationships.FindAllStringSubmatch(event.Message(), -1)) > 0 {
-			ircproj.Privmsg(event.Arguments[0], "Relationships documentation is available at https://docs.bolt.cm/contenttypes/relationships")
-		}
-		if len(templates.FindAllStringSubmatch(event.Message(), -1)) > 0 {
-			ircproj.Privmsg(event.Arguments[0], "Templates documentation is available at https://docs.bolt.cm/templating/building-templates")
-		}
-		if len(records.FindAllStringSubmatch(event.Message(), -1)) > 0 {
-			ircproj.Privmsg(event.Arguments[0], "Record and Records documentation is available at https://docs.bolt.cm/templating/record-and-records")
-		}
-		if len(paging.FindAllStringSubmatch(event.Message(), -1)) > 0 {
-			ircproj.Privmsg(event.Arguments[0], "Pagers and Paging documentation is available at https://docs.bolt.cm/templating/content-paging")
-		}
-		if len(search.FindAllStringSubmatch(event.Message(), -1)) > 0 {
-			ircproj.Privmsg(event.Arguments[0], "Search documentation is available at https://docs.bolt.cm/templating/content-search")
-		}
-		if len(temptags.FindAllStringSubmatch(event.Message(), -1)) > 0 {
-			ircproj.Privmsg(event.Arguments[0], "Template Tags information is available at https://docs.bolt.cm/templating/templatetags")
-		}
-		if len(extensions.FindAllStringSubmatch(event.Message(), -1)) > 0 {
-			ircproj.Privmsg(event.Arguments[0], "Extensions documentation is available at https://docs.bolt.cm/extensions")
-		}
-		if len(internals.FindAllStringSubmatch(event.Message(), -1)) > 0 {
-			ircproj.Privmsg(event.Arguments[0], "Documentation on Bolt's internals is available at https://docs.bolt.cm/internals")
-		}
-		if len(nut.FindAllStringSubmatch(event.Message(), -1)) > 0 {
-			ircproj.Privmsg(event.Arguments[0], "Documentation on Nut is available at https://docs.bolt.cm/other/nut")
-		}
 		if len(contributing.FindAllStringSubmatch(event.Message(), -1)) > 0 {
 			ircproj.Privmsg(event.Arguments[0], "Information on contributing to Bolt is available at https://docs.bolt.cm/other/contributing")
-		}
-		if len(maintenance.FindAllStringSubmatch(event.Message(), -1)) > 0 {
-			ircproj.Privmsg(event.Arguments[0], "Information on maintenance mode is available at https://docs.bolt.cm/other/maintenance-mode")
-		}
-		if len(resources.FindAllStringSubmatch(event.Message(), -1)) > 0 {
-			ircproj.Privmsg(event.Arguments[0], "A list of Bolt resources is available at https://docs.bolt.cm/other")
-		}
-		if len(about.FindAllStringSubmatch(event.Message(), -1)) > 0 {
-			ircproj.Privmsg(event.Arguments[0], "Read an introduction to Bolt https://docs.bolt.cm/getting-started/about")
-		}
-		if len(codequality.FindAllStringSubmatch(event.Message(), -1)) > 0 {
-			ircproj.Privmsg(event.Arguments[0], "Bolt's Code Quality Guidelines are available at https://docs.bolt.cm/other/code-quality")
 		}
 		if len(credits.FindAllStringSubmatch(event.Message(), -1)) > 0 {
 			ircproj.Privmsg(event.Arguments[0], "Credits for code used in Bolt are available at https://docs.bolt.cm/other/credits")
 		}
-		if len(issues.FindAllStringSubmatch(event.Message(), -1)) > 0 {
-			ircproj.Privmsg(event.Arguments[0], "Bolt issue tracker available at https://github.com/bolt/bolt/issues")
+		if len(docs.FindAllStringSubmatch(event.Message(), -1)) > 0 {
+			ircproj.Privmsg(event.Arguments[0], "Bolt documentation is available at https://docs.bolt.cm")
 		}
-		if len(manifesto.FindAllStringSubmatch(event.Message(), -1)) > 0 {
-			ircproj.Privmsg(event.Arguments[0], "Bolt manifesto available at https://docs.bolt.cm/other/manifesto")
+		if len(extend.FindAllStringSubmatch(event.Message(), -1)) > 0 {
+			ircproj.Privmsg(event.Arguments[0], "Extensions and themes are available at https://extensions.bolt.cm")
 		}
-		if len(roadmap.FindAllStringSubmatch(event.Message(), -1)) > 0 {
-			ircproj.Privmsg(event.Arguments[0], "Bolt 2.x Roadmap available at https://docs.bolt.cm/3.0/other/roadmap")
+		if len(extensions.FindAllStringSubmatch(event.Message(), -1)) > 0 {
+			ircproj.Privmsg(event.Arguments[0], "Extensions documentation is available at https://docs.bolt.cm/extensions")
+		}
+		if len(github.FindAllStringSubmatch(event.Message(), -1)) > 0 {
+			ircproj.Privmsg(event.Arguments[0], "Bolt source code is available at https://github.com/bolt/bolt")
 		}
 		if len(htaccess.FindAllStringSubmatch(event.Message(), -1)) > 0 || len(htaccess_override.FindAllStringSubmatch(event.Message(), -1)) > 0 {
 			ircproj.Privmsg(event.Arguments[0], "Having Apache rewrite issues? Have a look at https://docs.bolt.cm/installation/webserver/apache")
 		}
+		if len(install.FindAllStringSubmatch(event.Message(), -1)) > 0 {
+			ircproj.Privmsg(event.Arguments[0], "Full documentation on installing Bolt is available at https://docs.bolt.cm/installation/installation")
+		}
+		if len(internals.FindAllStringSubmatch(event.Message(), -1)) > 0 {
+			ircproj.Privmsg(event.Arguments[0], "Documentation on Bolt's internals is available at https://docs.bolt.cm/internals")
+		}
+		if len(issues.FindAllStringSubmatch(event.Message(), -1)) > 0 {
+			ircproj.Privmsg(event.Arguments[0], "Bolt issue tracker available at https://github.com/bolt/bolt/issues")
+		}
+		if len(maintenance.FindAllStringSubmatch(event.Message(), -1)) > 0 {
+			ircproj.Privmsg(event.Arguments[0], "Information on maintenance mode is available at https://docs.bolt.cm/other/maintenance-mode")
+		}
+		if len(manifesto.FindAllStringSubmatch(event.Message(), -1)) > 0 {
+			ircproj.Privmsg(event.Arguments[0], "Bolt manifesto available at https://docs.bolt.cm/other/manifesto")
+		}
+		if len(menus.FindAllStringSubmatch(event.Message(), -1)) > 0 {
+			ircproj.Privmsg(event.Arguments[0], "Menus documentation is available at https://docs.bolt.cm/configuration/menus")
+		}
+		if len(nut.FindAllStringSubmatch(event.Message(), -1)) > 0 {
+			ircproj.Privmsg(event.Arguments[0], "Documentation on Nut is available at https://docs.bolt.cm/other/nut")
+		}
+		if len(paging.FindAllStringSubmatch(event.Message(), -1)) > 0 {
+			ircproj.Privmsg(event.Arguments[0], "Pagers and Paging documentation is available at https://docs.bolt.cm/templating/content-paging")
+		}
+		if len(permissions.FindAllStringSubmatch(event.Message(), -1)) > 0 {
+			ircproj.Privmsg(event.Arguments[0], "Permissions documentation is available at https://docs.bolt.cm/configuration/permissions")
+		}
+		if len(records.FindAllStringSubmatch(event.Message(), -1)) > 0 {
+			ircproj.Privmsg(event.Arguments[0], "Record and Records documentation is available at https://docs.bolt.cm/templating/record-and-records")
+		}
+		if len(relationships.FindAllStringSubmatch(event.Message(), -1)) > 0 {
+			ircproj.Privmsg(event.Arguments[0], "Relationships documentation is available at https://docs.bolt.cm/contenttypes/relationships")
+		}
+		if len(requirements.FindAllStringSubmatch(event.Message(), -1)) > 0 {
+			ircproj.Privmsg(event.Arguments[0], "Bolt requirements are listed at https://docs.bolt.cm/getting-started/requirements")
+		}
+		if len(resources.FindAllStringSubmatch(event.Message(), -1)) > 0 {
+			ircproj.Privmsg(event.Arguments[0], "A list of Bolt resources is available at https://docs.bolt.cm/other")
+		}
+		if len(roadmap.FindAllStringSubmatch(event.Message(), -1)) > 0 {
+			ircproj.Privmsg(event.Arguments[0], "Bolt 2.x Roadmap available at https://docs.bolt.cm/3.0/other/roadmap")
+		}
+		if len(routes.FindAllStringSubmatch(event.Message(), -1)) > 0 {
+			ircproj.Privmsg(event.Arguments[0], "Routes documentation is available at https://docs.bolt.cm/templating/templates-routes")
+		}
+		if len(screenshots.FindAllStringSubmatch(event.Message(), -1)) > 0 {
+			ircproj.Privmsg(event.Arguments[0], "Screenshots of Bolt are available at https://docs.bolt.cm/getting-started/screenshots")
+		}
+		if len(search.FindAllStringSubmatch(event.Message(), -1)) > 0 {
+			ircproj.Privmsg(event.Arguments[0], "Search documentation is available at https://docs.bolt.cm/templating/content-search")
+		}
+		if len(taxonomies.FindAllStringSubmatch(event.Message(), -1)) > 0 {
+			ircproj.Privmsg(event.Arguments[0], "Taxonomies documentation is available at https://docs.bolt.cm/contenttypes/taxonomies")
+		}
+		if len(templates.FindAllStringSubmatch(event.Message(), -1)) > 0 {
+			ircproj.Privmsg(event.Arguments[0], "Templates documentation is available at https://docs.bolt.cm/templating/building-templates")
+		}
+		if len(temptags.FindAllStringSubmatch(event.Message(), -1)) > 0 {
+			ircproj.Privmsg(event.Arguments[0], "Template Tags information is available at https://docs.bolt.cm/templating/templatetags")
+		}
+		if len(updating.FindAllStringSubmatch(event.Message(), -1)) > 0 {
+			ircproj.Privmsg(event.Arguments[0], "Information on updates and updating is at https://docs.bolt.cm/upgrading/updating")
+		}
 		if len(webroot.FindAllStringSubmatch(event.Message(), -1)) > 0 || len(htaccess_override.FindAllStringSubmatch(event.Message(), -1)) > 0 {
 			ircproj.Privmsg(event.Arguments[0], "Having trouble with using Bolt outside of the web root. Have a look at https://docs.bolt.cm/3.0/howto/troubleshooting-outside-webroot")
 		}		
+		if len(workmap.FindAllStringSubmatch(event.Message(), -1)) > 0 {
+			ircproj.Privmsg(event.Arguments[0], "Core Development Workmap: https://github.com/bolt/bolt/wiki/Bolt-Core-Development-Workmap")
+		}
 	})
 
 	return nil
