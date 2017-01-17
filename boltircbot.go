@@ -268,6 +268,7 @@ func main() {
 	AddAction(ircproj, `#food`, "Mmmm... Leaves... https://koala.kx.nu/eating.gif")
 	AddAction(ircproj, `#fire`, "Kill it with fire. https://koala.kx.nu/fire.gif")
 	AddAction(ircproj, `#teamwork`, "Woo, teamwork! https://koala.kx.nu/teamwork.gif")
+	AddAction(ircproj, `#meeting`, "</meeting> Failed parsing XML: 'hug' expected, No 'love' shown for bot. Program 'meeting' terminated.")
 
 	AddActionKarma(c, ircproj)
 
