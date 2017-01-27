@@ -9,6 +9,7 @@ import (
 	"github.com/thoj/go-ircevent"
 	"io/ioutil"
 	"log"
+	"math"
 	"net"
 	"net/http"
 	"net/url"
@@ -19,7 +20,6 @@ import (
 	"strings"
 	"syscall"
 	"time"
-	"math"
 	"unicode"
 )
 
@@ -99,13 +99,13 @@ func main() {
 	}
 	ircproj.Password = c.Irc.Password
 	ircproj.QuitMessage = "Drop bear spotted… I'm out of here!"
-	
+
 	err := ircproj.Connect(net.JoinHostPort(c.Irc.Host, c.Irc.Port))
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	// Create a channel to receive signal notifications 
+	// Create a channel to receive signal notifications
 	sigs := make(chan os.Signal, 1)
 	// Register the channel to receive notifications SIGINT & SIGTERM signals.
 	signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
@@ -279,7 +279,6 @@ func main() {
 	ircproj.Loop()
 }
 
-
 const Consonants = "BCDGFHJKLMNPQRSTVWXZbcdfghjklmnpqrstvwxz"
 
 func swedishEncode(inputString string) string {
@@ -296,4 +295,3 @@ func swedishEncode(inputString string) string {
 
 	return string(encodedString)
 }
-

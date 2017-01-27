@@ -55,11 +55,10 @@ func AddActionInsult(c *Config, ircproj *irc.Connection) error {
 				} else {
 					time.Sleep(100)
 					ircproj.Actionf(event.Arguments[0], RandomInsult(), element)
-				}					
+				}
 			}
 		}
 	})
 
 	return nil
 }
-

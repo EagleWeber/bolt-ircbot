@@ -43,7 +43,7 @@ func AddActionSilentWorks(ircproj *irc.Connection, hash string, response string)
 	ircproj.AddCallback("PRIVMSG", func(event *irc.Event) {
 		elapsed := WpNagTimeTrack()
 
-		if elapsed < 300 * time.Second {
+		if elapsed < 300*time.Second {
 			return
 		}
 
@@ -215,7 +215,7 @@ func AddPrivmsgDocs(ircproj *irc.Connection) error {
 		}
 		if len(webroot.FindAllStringSubmatch(event.Message(), -1)) > 0 || len(htaccess_override.FindAllStringSubmatch(event.Message(), -1)) > 0 {
 			ircproj.Privmsg(event.Arguments[0], "Having trouble with using Bolt outside of the web root. Have a look at https://docs.bolt.cm/3.0/howto/troubleshooting-outside-webroot")
-		}		
+		}
 		if len(workmap.FindAllStringSubmatch(event.Message(), -1)) > 0 {
 			ircproj.Privmsg(event.Arguments[0], "Core Development Workmap: https://github.com/bolt/bolt/wiki/Bolt-Core-Development-Workmap")
 		}
